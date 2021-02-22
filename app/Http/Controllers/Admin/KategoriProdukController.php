@@ -14,7 +14,7 @@ class KategoriProdukController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.admin.kategori_produk.index');
     }
 
     /**

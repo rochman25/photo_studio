@@ -14,7 +14,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.admin.booking.index');
     }
 
     /**
