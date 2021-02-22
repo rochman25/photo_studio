@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\KategoriProdukController;
+use App\Http\Controllers\Admin\ProdukController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\User\HomeController as UserHomeController;
 use Illuminate\Support\Facades\Route;
@@ -29,5 +34,22 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('view.home');
+
+    //resource route
+    //produk
+    Route::resource('produk', ProdukController::class);
+
+    //kategori produk
+    Route::resource('kategori_produk', KategoriProdukController::class);
+
+    //user
+    Route::resource('user', UserController::class);
+    
+    //role
+    Route::resource('role', RoleController::class);
+    
+    //booking
+    Route::resource('booking', BookingController::class);
+    
     Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 });

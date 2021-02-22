@@ -74,7 +74,7 @@
                     <h4 class="kt-menu__section-text">Master Data</h4>
                     <i class="kt-menu__section-icon flaticon-more-v2"></i>
                 </li>
-                <li class="kt-menu__item" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="#"
+                <li class="kt-menu__item" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="{{ route('kategori_produk.index') }}"
                         class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
@@ -92,7 +92,7 @@
                             </svg></span><span class="kt-menu__link-text">Kategori Produk</span></a>
 
                 </li>
-                <li class="kt-menu__item" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="#"
+                <li class="kt-menu__item" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="{{ route('produk.index') }}"
                         class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
@@ -118,7 +118,7 @@
                     <h4 class="kt-menu__section-text">Booking Photo</h4>
                     <i class="kt-menu__section-icon flaticon-more-v2"></i>
                 </li>
-                <li class="kt-menu__item" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="#"
+                <li class="kt-menu__item" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="{{ route('booking.index') }}"
                         class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
@@ -171,7 +171,7 @@
                             </svg></span><span class="kt-menu__link-text">Landing Page</span></a>
 
                 </li>
-                <li class="kt-menu__item" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="#"
+                <li class="kt-menu__item" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="{{ route('role.index') }}"
                         class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
@@ -187,7 +187,7 @@
                             </svg></span><span class="kt-menu__link-text">Role</span></a>
 
                 </li>
-                <li class="kt-menu__item" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="#"
+                <li class="kt-menu__item" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="{{ route('user.index') }}"
                         class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
