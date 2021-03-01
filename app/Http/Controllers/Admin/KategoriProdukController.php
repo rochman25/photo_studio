@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ProductCategory;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KategoriProdukController extends Controller
 {
@@ -14,7 +17,8 @@ class KategoriProdukController extends Controller
      */
     public function index()
     {
-        return view('pages.admin.kategori_produk.index');
+        $kategori_produk = ProductCategory::all();
+        return view('pages.admin.kategori_produk.index',compact('kategori_produk'));
     }
 
     /**
@@ -24,7 +28,7 @@ class KategoriProdukController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.kategori_produk.create');
     }
 
     /**
@@ -35,7 +39,18 @@ class KategoriProdukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required|unique:product_categories,nama'
+        ]);
+        try{
+            DB::beginTransaction();
+            ProductCategory::create($request->all());
+            DB::commit();
+            return redirect()->route('kategori_produk.index')->with('success','Data Berhasil disimpan');
+        }catch(Exception $e){
+            DB::rollBack();
+            return redirect()->back()->withErrors(['Error Code'=>$e->getCode()]);
+        }
     }
 
     /**
@@ -57,7 +72,8 @@ class KategoriProdukController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kategori_produk = ProductCategory::find($id);
+        return view('pages.admin.kategori_produk.edit',compact('kategori_produk'));
     }
 
     /**
@@ -69,7 +85,26 @@ class KategoriProdukController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+        $request->validate([
+            "nama" => "required|unique:product_categories,nama,".$id
+        ]);
+
+        try {
+            //code...
+            DB::beginTransaction();
+            $kategori_produk = ProductCategory::find($id);
+            $kategori_produk->nama = $request->nama;
+            $kategori_produk->deskripsi = $request->deskripsi;
+            $kategori_produk->save();
+            DB::commit();
+            return redirect()->route('kategori_produk.index')->with('success','Data Berhasil disimpan');
+        } catch (Exception $e) {
+            //throw $th;
+            DB::rollBack();
+            return redirect()->back()->withErrors(['error code:'=>$e->getCode()]);
+        }
+
     }
 
     /**
@@ -80,6 +115,15 @@ class KategoriProdukController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            DB::beginTransaction();
+            ProductCategory::where('id',$id)->delete();
+            DB::commit();
+            $success = true;         
+            return response()->json(['success'=>$success]);
+        }catch(Exception $e){
+            DB::rollBack();
+            return response()->json(['success' => false,'errors' => $e->getCode()]);
+        }
     }
 }
