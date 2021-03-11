@@ -5,14 +5,15 @@
         <div class="kt-container  kt-container--fluid ">
             <div class="kt-subheader__main">
                 <h3 class="kt-subheader__title">
-                    {{ "Kategori Produk" }} </h3>
+                    {{ 'Produk' }} </h3>
                 <span class="kt-subheader__separator kt-hidden"></span>
             </div>
             <div class="kt-subheader__toolbar">
                 <div class="kt-subheader__wrapper">
                     <div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="Tambah Data"
                         data-placement="left">
-                        <a href="{{ route('kategori_produk.create') }}" class="btn btn-icon" aria-haspopup="true" aria-expanded="false">
+                        <a href="{{ route('produk.create') }}" class="btn btn-icon" aria-haspopup="true"
+                            aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                 height="24px" viewBox="0 0 24 24" version="1.1"
                                 class="kt-svg-icon kt-svg-icon--success kt-svg-icon--md">
@@ -44,7 +45,7 @@
                     <div class="kt-portlet__head">
                         <div class="kt-portlet__head-label">
                             <h3 class="kt-portlet__head-title">
-                                Hoverable Table
+                                {{ 'Data Produk' }}
                             </h3>
                         </div>
                     </div>
@@ -53,34 +54,53 @@
                         <!--begin::Section-->
                         <div class="kt-section">
                             <div class="kt-section__content">
+                                @if ($message = Session::get('success'))
+                                    <div class="alert alert-success" role="alert">
+                                        <div class="alert-icon"><i class="flaticon-like"></i></div>
+                                        <div class="alert-text">
+                                            {{ $message }}
+                                        </div>
+                                        <div class="alert-close">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true"><i class="la la-close"></i></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                @endif
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Username</th>
+                                            <th>Nama</th>
+                                            <th>Thumbnail</th>
+                                            <th>Kategori</th>
+                                            <th>Harga</th>
+                                            <th>Terakhir diupadte</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Jhon</td>
-                                            <td>Stone</td>
-                                            <td>@jhon</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Lisa</td>
-                                            <td>Nilson</td>
-                                            <td>@lisa</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
+                                        @forelse ($produk as $index => $item)
+                                            <tr>
+                                                <td>{{ ++$index }}</td>
+                                                <td>{{ $item->nama }}</td>
+                                                <td><img src="{{ asset($item->thumbnail) }}" width="100px"></td>
+                                                <td>{{ $item->category->nama }}</td>
+                                                <td>{{ $item->harga }}</td>
+                                                <td>{{ $item->updated_at }}</td>
+                                                <td>
+                                                    <a href="{{ route('produk.edit',$item->id) }}" class="btn btn-sm btn-success"><i class="flaticon-edit"></i></a>
+                                                    <button type="button"
+                                                        data-url="{{ route('produk.destroy', $item->id) }}"
+                                                        class="btn btn-sm btn-danger btn-hapus"><i class="flaticon2-trash"></i>
+                                                        </a>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <th scope="row" colspan="7" class="text-center">-- Belum ada data-- </th>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -97,3 +117,46 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.btn-hapus').click(function() {
+                // alert("Hapus fired.")
+                const url = $(this).data('url');
+                const idBtn = $(this).data('id');
+                swal.fire({
+                    title: "Konfirmasi",
+                    text: "Apakah anda yakin ingin menghapus ?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya',
+                    cancelButtonText: 'Tidak',
+                    reverseButtons: true,
+                }).then(function(result){
+                    if (result.value) {
+                        $.ajax({
+                            url: url,
+                            type: "DELETE",
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                                id: idBtn
+                            },
+                            success: function(response) {
+                                console.log(response)
+                                if (response.success) {
+                                    swal.fire("Sukses!", "Data berhasil dihapus", "success");
+                                    setTimeout(location.reload.bind(location), 1000);
+                                } else {
+                                    swal("Error", "Maaf terjadi kesalahan", "error");
+                                }
+                            }
+                        });
+                    } else {
+                        swal.close();
+                    }
+                });
+            });
+        });
+
+    </script>
+@endpush
