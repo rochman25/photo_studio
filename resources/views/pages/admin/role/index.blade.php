@@ -5,14 +5,15 @@
         <div class="kt-container  kt-container--fluid ">
             <div class="kt-subheader__main">
                 <h3 class="kt-subheader__title">
-                    {{ "Kategori Produk" }} </h3>
+                    {{ 'Role' }} </h3>
                 <span class="kt-subheader__separator kt-hidden"></span>
             </div>
             <div class="kt-subheader__toolbar">
                 <div class="kt-subheader__wrapper">
                     <div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="Tambah Data"
                         data-placement="left">
-                        <a href="{{ route('kategori_produk.create') }}" class="btn btn-icon" aria-haspopup="true" aria-expanded="false">
+                        <a href="{{ route('kategori_produk.create') }}" class="btn btn-icon" aria-haspopup="true"
+                            aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                 height="24px" viewBox="0 0 24 24" version="1.1"
                                 class="kt-svg-icon kt-svg-icon--success kt-svg-icon--md">
@@ -44,7 +45,7 @@
                     <div class="kt-portlet__head">
                         <div class="kt-portlet__head-label">
                             <h3 class="kt-portlet__head-title">
-                                Hoverable Table
+                                {{ 'Data Role' }}
                             </h3>
                         </div>
                     </div>
@@ -57,30 +58,22 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Username</th>
+                                            <th>Nama</th>
+                                            <th>Terakhir diupdate</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Jhon</td>
-                                            <td>Stone</td>
-                                            <td>@jhon</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Lisa</td>
-                                            <td>Nilson</td>
-                                            <td>@lisa</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
+                                        @forelse ($roles as $index => $item)
+                                            <tr>
+                                                <th scope="row">{{ ++$index }}</th>
+                                                <td>{{ $item->name }}</td>
+                                                <td>{{ $item->updated_at }}</td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <th colspan="3" style="text-align: center" scope="row">{{ "-- Belum ada Data --" }}</th>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

@@ -9,6 +9,8 @@ class UserRole extends Model
 {
     use HasFactory;
 
+    protected $table = "user_role";
+
     public function user(){
         return $this->belongsTo(User::class,'user_id');
     }
