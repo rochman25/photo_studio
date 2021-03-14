@@ -145,7 +145,7 @@ class ProdukController extends Controller
             DB::commit();
             return redirect()->route('produk.index')->with('success',"Data berhasil diperbarui");
         }catch(Exception $e){
-            dd($e);
+            // dd($e);
             DB::rollBack();
             return redirect()->back()->withErrors(["Error Code"=>$e->getCode()]);
         }

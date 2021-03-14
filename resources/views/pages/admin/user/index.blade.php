@@ -12,7 +12,7 @@
                 <div class="kt-subheader__wrapper">
                     <div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="Tambah Data"
                         data-placement="left">
-                        <a href="{{ route('kategori_produk.create') }}" class="btn btn-icon" aria-haspopup="true"
+                        <a href="{{ route('user.create') }}" class="btn btn-icon" aria-haspopup="true"
                             aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                 height="24px" viewBox="0 0 24 24" version="1.1"
@@ -45,7 +45,7 @@
                     <div class="kt-portlet__head">
                         <div class="kt-portlet__head-label">
                             <h3 class="kt-portlet__head-title">
-                                {{ "Data Pengguna" }}
+                                {{ 'Data Pengguna' }}
                             </h3>
                         </div>
                     </div>
@@ -54,24 +54,45 @@
                         <!--begin::Section-->
                         <div class="kt-section">
                             <div class="kt-section__content">
+                                @if ($message = Session::get('success'))
+                                    <div class="alert alert-success" role="alert">
+                                        <div class="alert-icon"><i class="flaticon-like"></i></div>
+                                        <div class="alert-text">
+                                            {{ $message }}
+                                        </div>
+                                        <div class="alert-close">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true"><i class="la la-close"></i></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                @endif
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>Username</th>
                                             <th>Email</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse ($users as $index => $item)
                                             <tr>
                                                 <th scope="row">{{ ++$index }}</th>
-                                                <td>{{ $item->username }}</td>
+                                                <td>{{ $item->name }}</td>
                                                 <td>{{ $item->email }}</td>
+                                                <td>
+                                                    <a href="{{ route('user.edit', $item->id) }}"
+                                                        class="btn btn-sm btn-success"><i class="flaticon-edit"></i></a>
+                                                    <button type="button" data-url="{{ route('user.destroy', $item->id) }}"
+                                                        class="btn btn-sm btn-danger btn-hapus"><i class="flaticon2-trash"></i>
+                                                        </a>
+                                                </td>
                                             </tr>
                                         @empty
                                             <tr>
-                                                <th colspan="3" scope="row" style="text-align: center">-- Belum ada data-- </th>
+                                                <th colspan="4" scope="row" style="text-align: center">-- Belum ada data-- </th>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -90,3 +111,46 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.btn-hapus').click(function() {
+                // alert("Hapus fired.")
+                const url = $(this).data('url');
+                const idBtn = $(this).data('id');
+                swal.fire({
+                    title: "Konfirmasi",
+                    text: "Apakah anda yakin ingin menghapus ?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya',
+                    cancelButtonText: 'Tidak',
+                    reverseButtons: true,
+                }).then(function(result){
+                    if (result.value) {
+                        $.ajax({
+                            url: url,
+                            type: "DELETE",
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                                id: idBtn
+                            },
+                            success: function(response) {
+                                console.log(response)
+                                if (response.success) {
+                                    swal.fire("Sukses!", "Data berhasil dihapus", "success");
+                                    setTimeout(location.reload.bind(location), 1000);
+                                } else {
+                                    swal("Error", "Maaf terjadi kesalahan", "error");
+                                }
+                            }
+                        });
+                    } else {
+                        swal.close();
+                    }
+                });
+            });
+        });
+
+    </script>
+@endpush

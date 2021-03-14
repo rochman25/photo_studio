@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
+use App\Models\UserRole;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -28,7 +33,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::all();
+        return view('pages.admin.user.create',compact('roles'));
     }
 
     /**
@@ -39,7 +45,32 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "name" => "required|unique:users,name|min:4",
+            "email" => "required|email|unique:users,email",
+            "password" => "required|confirmed|min:4",
+            "role_id" => "required",
+        ]);
+        try{
+            DB::beginTransaction();
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->save();
+
+            UserRole::insert([
+                "user_id" => $user->id,
+                "role_id" => $request->role_id
+            ]);
+            
+            DB::commit();
+            return redirect()->route('user.index')->with("success","Data berhasil disimpan");
+        }catch(Exception $e){
+            dd($e);
+            DB::rollBack();
+            return redirect()->back()->withErrors(["Error Code"=>$e->getCode()]);
+        }
     }
 
     /**
@@ -61,7 +92,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $roles = Role::all();
+        $user = User::with('role')->find($id);
+        return view('pages.admin.user.edit',compact('roles','user'));
     }
 
     /**
@@ -73,7 +106,31 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            "name" => "required|min:4|unique:users,name,".$id,
+            "email" => "required|email|unique:users,email,".$id,
+            "password" => "nullable|confirmed|min:4",
+            "role_id" => "required",
+        ]);
+        try{
+            DB::beginTransaction();
+            $user = User::find($id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->save();
+
+            if($user->role->role_id != $request->role_id){
+                UserRole::where('user_id',$id)->update(["role_id" => $request->role_id]);
+            }
+            // dd($user);
+            DB::commit();
+            return redirect()->route('user.index')->with("success","Data berhasil disimpan");
+        }catch(Exception $e){
+            dd($e);
+            DB::rollBack();
+            return redirect()->back()->withErrors(["Error Code"=>$e->getCode()]);
+        }
     }
 
     /**
@@ -84,6 +141,17 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            DB::beginTransaction();
+            $user = User::where('id',$id)->first();
+            UserRole::where('user_id',$id)->delete();
+            $user->delete();
+            DB::commit();
+            $success = true;         
+            return response()->json(['success'=>$success]);
+        }catch(Exception $e){
+            DB::rollBack();
+            return response()->json(['success' => false,'errors' => $e->getMessage()]);
+        }
     }
 }
