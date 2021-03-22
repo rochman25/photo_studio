@@ -52,7 +52,7 @@
 
             </div>
         </section><!-- End About Section -->
-
+{{-- 
         <!-- ======= Facts Section ======= -->
         <section id="facts">
             <div class="container" data-aos="fade-up">
@@ -149,7 +149,7 @@
                 </div>
 
             </div>
-        </section><!-- End Services Section -->
+        </section><!-- End Services Section --> --}}
 
         <!-- ======= Call To Action Section ======= -->
         <section id="call-to-action">
@@ -192,11 +192,11 @@
                 <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('user_assets/img/portfolio/portfolio-1.jpg') }}" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>App 1</h4>
                             <p>App</p>
-                            <a href="assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery"
+                            <a href="{{ asset('user_assets/img/portfolio/portfolio-1.jpg') }}" data-gall="portfolioGallery"
                                 class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
                             <a href="portfolio-details.html" class="details-link" title="More Details"><i
                                     class="bx bx-link"></i></a>
@@ -204,11 +204,11 @@
                     </div>
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('user_assets/img/portfolio/portfolio-2.jpg') }}" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Web 3</h4>
                             <p>Web</p>
-                            <a href="assets/img/portfolio/portfolio-2.jpg" data-gall="portfolioGallery"
+                            <a href="{{ asset('user_assets/img/portfolio/portfolio-2.jpg') }}" data-gall="portfolioGallery"
                                 class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
                             <a href="portfolio-details.html" class="details-link" title="More Details"><i
                                     class="bx bx-link"></i></a>
@@ -216,11 +216,11 @@
                     </div>
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('user_assets/img/portfolio/portfolio-3.jpg') }}" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>App 2</h4>
                             <p>App</p>
-                            <a href="assets/img/portfolio/portfolio-3.jpg" data-gall="portfolioGallery"
+                            <a href="{{ asset('user_assets/img/portfolio/portfolio-3.jpg') }}" data-gall="portfolioGallery"
                                 class="venobox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
                             <a href="portfolio-details.html" class="details-link" title="More Details"><i
                                     class="bx bx-link"></i></a>
@@ -228,11 +228,11 @@
                     </div>
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('user_assets/img/portfolio/portfolio-4.jpg') }}" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Card 2</h4>
                             <p>Card</p>
-                            <a href="assets/img/portfolio/portfolio-4.jpg" data-gall="portfolioGallery"
+                            <a href="{{ asset('user_assets/img/portfolio/portfolio-4.jpg') }}" data-gall="portfolioGallery"
                                 class="venobox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
                             <a href="portfolio-details.html" class="details-link" title="More Details"><i
                                     class="bx bx-link"></i></a>
@@ -240,11 +240,11 @@
                     </div>
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('user_assets/img/portfolio/portfolio-5.jpg') }}" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Web 2</h4>
                             <p>Web</p>
-                            <a href="assets/img/portfolio/portfolio-5.jpg" data-gall="portfolioGallery"
+                            <a href="{{ asset('user_assets/img/portfolio/portfolio-5.jpg') }}" data-gall="portfolioGallery"
                                 class="venobox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
                             <a href="portfolio-details.html" class="details-link" title="More Details"><i
                                     class="bx bx-link"></i></a>
@@ -252,11 +252,11 @@
                     </div>
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('user_assets/img/portfolio/portfolio-6.jpg') }}" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>App 3</h4>
                             <p>App</p>
-                            <a href="assets/img/portfolio/portfolio-6.jpg" data-gall="portfolioGallery"
+                            <a href="{{ asset('user_assets/img/portfolio/portfolio-6.jpg') }}" data-gall="portfolioGallery"
                                 class="venobox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
                             <a href="portfolio-details.html" class="details-link" title="More Details"><i
                                     class="bx bx-link"></i></a>
@@ -264,11 +264,11 @@
                     </div>
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('user_assets/img/portfolio/portfolio-7.jpg') }}" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Card 1</h4>
                             <p>Card</p>
-                            <a href="assets/img/portfolio/portfolio-7.jpg" data-gall="portfolioGallery"
+                            <a href="{{ asset('user_assets/img/portfolio/portfolio-7.jpg') }}" data-gall="portfolioGallery"
                                 class="venobox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
                             <a href="portfolio-details.html" class="details-link" title="More Details"><i
                                     class="bx bx-link"></i></a>
@@ -276,11 +276,11 @@
                     </div>
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('user_assets/img/portfolio/portfolio-8.jpg') }}" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Card 3</h4>
                             <p>Card</p>
-                            <a href="assets/img/portfolio/portfolio-8.jpg" data-gall="portfolioGallery"
+                            <a href="{{ asset('user_assets/img/portfolio/portfolio-8.jpg') }}" data-gall="portfolioGallery"
                                 class="venobox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
                             <a href="portfolio-details.html" class="details-link" title="More Details"><i
                                     class="bx bx-link"></i></a>
@@ -288,11 +288,11 @@
                     </div>
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('user_assets/img/portfolio/portfolio-9.jpg') }}" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Web 3</h4>
                             <p>Web</p>
-                            <a href="assets/img/portfolio/portfolio-9.jpg" data-gall="portfolioGallery"
+                            <a href="{{ asset('user_assets/img/portfolio/portfolio-9.jpg') }}" data-gall="portfolioGallery"
                                 class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
                             <a href="portfolio-details.html" class="details-link" title="More Details"><i
                                     class="bx bx-link"></i></a>
@@ -303,7 +303,7 @@
 
             </div>
         </section><!-- End Portfolio Section -->
-
+{{-- 
         <!-- ======= Team Section ======= -->
         <section id="team">
             <div class="container" data-aos="fade-up">
@@ -315,7 +315,7 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <div class="member" data-aos="fade-up" data-aos-delay="100">
-                            <div class="pic"><img src="assets/img/team-1.jpg" alt=""></div>
+                            <div class="pic"><img src="{{ asset('user_assets/img/team-1.jpg') }}" alt=""></div>
                             <h4>Walter White</h4>
                             <span>Chief Executive Officer</span>
                             <div class="social">
@@ -329,7 +329,7 @@
 
                     <div class="col-lg-3 col-md-6">
                         <div class="member" data-aos="fade-up" data-aos-delay="200">
-                            <div class="pic"><img src="assets/img/team-2.jpg" alt=""></div>
+                            <div class="pic"><img src="{{ asset('user_assets/img/team-2.jpg') }}" alt=""></div>
                             <h4>Sarah Jhinson</h4>
                             <span>Product Manager</span>
                             <div class="social">
@@ -343,7 +343,7 @@
 
                     <div class="col-lg-3 col-md-6">
                         <div class="member" data-aos="fade-up" data-aos-delay="300">
-                            <div class="pic"><img src="assets/img/team-3.jpg" alt=""></div>
+                            <div class="pic"><img src="{{ asset('user_assets/img/team-3.jpg') }}" alt=""></div>
                             <h4>William Anderson</h4>
                             <span>CTO</span>
                             <div class="social">
@@ -357,7 +357,7 @@
 
                     <div class="col-lg-3 col-md-6">
                         <div class="member" data-aos="fade-up" data-aos-delay="400">
-                            <div class="pic"><img src="assets/img/team-4.jpg" alt=""></div>
+                            <div class="pic"><img src="{{ asset('user_assets/img/team-4.jpg') }}" alt=""></div>
                             <h4>Amanda Jepson</h4>
                             <span>Accountant</span>
                             <div class="social">
@@ -371,8 +371,8 @@
                 </div>
 
             </div>
-        </section><!-- End Team Section -->
-
+        </section><!-- End Team Section --> --}}
+{{-- 
         <!-- ======= Contact Section ======= -->
         <section id="contact">
             <div class="container">
@@ -457,7 +457,7 @@
                 </div>
 
             </div>
-        </section><!-- End Contact Section -->
+        </section><!-- End Contact Section --> --}}
 
     </main><!-- End #main -->
 @endsection

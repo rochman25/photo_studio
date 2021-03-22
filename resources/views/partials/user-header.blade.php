@@ -3,7 +3,7 @@
     <div class="container">
 
         <div id="logo" class="pull-left">
-            <a href="index.html"><img src="assets/img/logo.png" alt=""></a>
+            <a href="index.html"><img src="{{ asset('user_assets/img/logo.png') }}" alt=""></a>
             <!-- Uncomment below if you prefer to use a text logo -->
             <!--<h1><a href="#hero">Regna</a></h1>-->
         </div>
