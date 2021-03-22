@@ -19,9 +19,9 @@
 
     <!-- Vendor CSS Files -->
     <link href="{{ asset('user_assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('user_assets/vendor/font-awesome/css/font-awesome.') }}" rel="stylesheet">
-    <link href="{{ asset('user_assets/vendor/boxicons/css/boxicons.') }}" rel="stylesheet">
-    <link href="{{ asset('user_assets/vendor/owl.carousel/assets/owl.carousel.') }}" rel="stylesheet">
+    <link href="{{ asset('user_assets/vendor/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('user_assets/vendor/boxicons/css/boxicons.css') }}" rel="stylesheet">
+    <link href="{{ asset('user_assets/vendor/owl.carousel/assets/owl.carousel.css') }}" rel="stylesheet">
     <link href="{{ asset('user_assets/vendor/venobox/venobox.css') }}" rel="stylesheet">
     <link href="{{ asset('user_assets/vendor/aos/aos.css') }}" rel="stylesheet">
 
