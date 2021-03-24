@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\User\HomeController as UserHomeController;
+use App\Http\Controllers\User\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +31,7 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/login', [AuthController::class, 'loginView'])->name('login');
     Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('post.login');
     Route::get('/', [UserHomeController::class, 'index'])->name('view.user.home');
+    Route::get('/shop',[ShopController::class,'index'])->name('view.user.shop');
 });
 
 Route::middleware(['auth'])->group(function () {
