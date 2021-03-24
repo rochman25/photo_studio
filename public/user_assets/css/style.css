@@ -572,7 +572,7 @@ section {
 
 #about .about-container .background {
   min-height: 300px;
-  background: url(../img/about-img.jpg) center top no-repeat;
+  background: url(../../img/about_us.png) center top no-repeat;
   margin-bottom: 10px;
 }
 
