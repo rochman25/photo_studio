@@ -10,8 +10,11 @@ class ShopController extends Controller
     //
 
     public function index(){
-        
         return view('pages.user.shop.index');
+    }
+
+    public function show($id){
+        return view('pages.user.shop.detail');
     }
 
 }

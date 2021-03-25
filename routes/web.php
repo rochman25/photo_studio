@@ -32,6 +32,7 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('post.login');
     Route::get('/', [UserHomeController::class, 'index'])->name('view.user.home');
     Route::get('/shop',[ShopController::class,'index'])->name('view.user.shop');
+    Route::get('/shop/{id}',[ShopController::class,'show'])->name('view.user.shop.detail');
 });
 
 Route::middleware(['auth'])->group(function () {
