@@ -82,4 +82,17 @@ class HomeController extends Controller
     {
         //
     }
+
+    public function portfolio(){
+        return view('pages.user.etc.portfolio');
+    }
+
+    public function about(){
+        return view('pages.user.etc.about_us');
+    }
+
+    public function contact(){
+        return view('pages.user.etc.contact_us');
+    }
+
 }

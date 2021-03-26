@@ -12,9 +12,9 @@
             <ul class="nav-menu">
                 <li class="{{ request()->is('/') ? 'menu-active' : '' }}"><a href="{{ route('view.user.home') }}">Home</a></li>
                 <li class="{{ request()->is('shop') ? 'menu-active' : '' }}"><a href="{{ route('view.user.shop') }}">Shop</a></li>
-                <li><a href="">Portfolio</a></li>
-                <li><a href="">About Us</a></li>
-                <li><a href="">Contact Us</a></li>
+                <li class="{{ request()->is('portfolio') ? 'menu-active' : '' }}"><a href="{{ route('view.user.portfolio') }}">Portfolio</a></li>
+                <li class="{{ request()->is('about_us') ? 'menu-active' : '' }}"><a href="{{ route('view.user.about_us') }}">About Us</a></li>
+                <li class="{{ request()->is('contact_us') ? 'menu-active' : '' }}"><a href="{{ route('view.user.contact_us') }}">Contact Us</a></li>
             </ul>
         </nav><!-- #nav-menu-container -->
     </div>

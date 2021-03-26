@@ -10,7 +10,7 @@
                     <h2>Portfolio</h2>
                     <ol>
                         <li><a href="{{ route('view.user.home') }}">Home</a></li>
-                        <li>Portfolio</li>
+                        <li>Shop</li>
                         <li>Nama Product</li>
                     </ol>
                 </div>
