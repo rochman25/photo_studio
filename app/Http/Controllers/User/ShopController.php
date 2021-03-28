@@ -17,4 +17,8 @@ class ShopController extends Controller
         return view('pages.user.shop.detail');
     }
 
+    public function cart(){
+        return view('pages.user.shop.cart');
+    }
+
 }

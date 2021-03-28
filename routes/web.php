@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\User\HomeController as UserHomeController;
 use App\Http\Controllers\User\ShopController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,12 +31,16 @@ Route::middleware(['guest'])->group(function () {
     //
     Route::get('/login', [AuthController::class, 'loginView'])->name('login');
     Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('post.login');
+    Route::get('/register',[AuthController::class,'registerView'])->name('register');
+
     Route::get('/', [UserHomeController::class, 'index'])->name('view.user.home');
     Route::get('/shop',[ShopController::class,'index'])->name('view.user.shop');
     Route::get('/shop/{id}',[ShopController::class,'show'])->name('view.user.shop.detail');
     Route::get('/portfolio',[UserHomeController::class,'portfolio'])->name('view.user.portfolio');
+    Route::get('/portfolio/{id}',[UserHomeController::class,'detail_portfolio'])->name('view.user.portfolio.detail');
     Route::get('/about_us',[UserHomeController::class,'about'])->name('view.user.about_us');
     Route::get('/contact_us',[UserHomeController::class,'contact'])->name('view.user.contact_us');
+    Route::get('/cart',[ShopController::class,'cart'])->name('view.user.cart');
 });
 
 Route::middleware(['auth'])->group(function () {

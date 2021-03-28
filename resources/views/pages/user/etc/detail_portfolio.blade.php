@@ -10,6 +10,7 @@
                     <ol>
                         <li><a href="{{ route('view.user.home') }}">Home</a></li>
                         <li>Portfolio</li>
+                        <li>Judul-Portfolio 1</li>
                     </ol>
                 </div>
             </div>
@@ -20,17 +21,6 @@
                 <!-- ======= Portfolio Section ======= -->
                 <div id="portfolio" class="portfolio">
                     <div class="container" data-aos="fade-up">
-                        {{-- <div class="row" data-aos="fade-up" data-aos-delay="100">
-                            <div class="col-lg-12 d-flex justify-content-center">
-                                <ul id="portfolio-flters">
-                                    <li data-filter="*" class="filter-active">All</li>
-                                    <li data-filter=".filter-app">App</li>
-                                    <li data-filter=".filter-card">Card</li>
-                                    <li data-filter=".filter-web">Web</li>
-                                </ul>
-                            </div>
-                        </div> --}}
-
                         <div class="row" data-aos="fade-up" data-aos-delay="200">
 
                             <div class="col-lg-12 col-md-12 portfolio-item filter-app">
@@ -38,9 +28,9 @@
                                 <div class="portfolio-info">
                                     <h4>App 1</h4>
                                     <p>App</p>
-                                    <a href="{{ asset('img/portfolio_1.png') }}" data-gall="portfolioGallery"
+                                    <a href="{{ asset('img/category_1.png') }}" data-gall="portfolioGallery"
                                         class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-                                    <a href="{{ route('view.user.portfolio.detail',"Judul-portfolio 1") }}" class="details-link" title="More Details"><i
+                                    <a href="portfolio-details.html" class="details-link" title="More Details"><i
                                             class="bx bx-link"></i></a>
                                 </div>
                             </div>

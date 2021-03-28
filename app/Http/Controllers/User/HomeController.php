@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use PDO;
 
 class HomeController extends Controller
 {
@@ -85,6 +86,10 @@ class HomeController extends Controller
 
     public function portfolio(){
         return view('pages.user.etc.portfolio');
+    }
+
+    public function detail_portfolio(){
+        return view('pages.user.etc.detail_portfolio');
     }
 
     public function about(){
