@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\KategoriProdukController;
+use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
@@ -61,6 +63,12 @@ Route::middleware(['auth'])->group(function () {
     
     //booking
     Route::resource('booking', BookingController::class);
+
+    //heros
+    Route::resource('hero',HeroController::class);
+
+    //portfolio
+    Route::resource('portfolio', [PortfolioController::class]);
     
     Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 });
