@@ -54,7 +54,7 @@ class ProdukController extends Controller
             DB::beginTransaction();
             // dd($request);
             $filename = str_replace(" ","_",$request->nama).".".$request->file("thumbnail")->extension();
-            $path = $request->file("thumbnail")->storeAs('thumbnails',$filename);
+            $path = $request->file("thumbnail")->storeAs('public/thumbnails',$filename);
             $url = Storage::url($path);
             // dd($url);
             Product::create([

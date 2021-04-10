@@ -46,29 +46,29 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('view.home');
+    Route::get('admin/home', [HomeController::class, 'index'])->name('view.home');
 
     //resource route
     //produk
-    Route::resource('produk', ProdukController::class);
+    Route::resource('admin/produk', ProdukController::class);
 
     //kategori produk
-    Route::resource('kategori_produk', KategoriProdukController::class);
+    Route::resource('admin/kategori_produk', KategoriProdukController::class);
 
     //user
-    Route::resource('user', UserController::class);
+    Route::resource('admin/user', UserController::class);
     
     //role
-    Route::resource('role', RoleController::class);
+    Route::resource('admin/role', RoleController::class);
     
     //booking
-    Route::resource('booking', BookingController::class);
+    Route::resource('admin/booking', BookingController::class);
 
     //heros
-    Route::resource('hero',HeroController::class);
+    Route::resource('admin/hero',HeroController::class);
 
     //portfolio
-    Route::resource('portfolio', [PortfolioController::class]);
+    // Route::resource('/admin/portfolio', [PortfolioController::class]);
     
     Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 });

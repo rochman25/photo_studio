@@ -38,7 +38,12 @@
                                 <h4>Categories</h4>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li id="headingOne" class="list-group-item">
+                                @forelse ($categories as $item)
+                                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                                @empty
+                                    <li class="list-group-item">{{ "Kategori Belum Ada" }}</li>
+                                @endforelse
+                                {{-- <li id="headingOne" class="list-group-item">
                                     <a class="collapsed" data-toggle="collapse" data-target="#collapseExample"
                                         aria-expanded="false" aria-controls="collapseExample">
                                         Categori 1<i style="float: right" class="fa" aria-hidden="true"></i>
@@ -48,8 +53,7 @@
                                                     class="fa fa-chevron-right"></i> Sub Categori 1</a></p>
                                     </div>
                                 </li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
+                                <li class="list-group-item">Vestibulum at eros</li> --}}
                             </ul>
                         </div>
                     </div>
@@ -60,109 +64,33 @@
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-md-4">
-                                <div class="card mb-4 shadow-sm">
-                                    <img class="card-img-top" src="{{ asset('img/product_1.png') }}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <p class="card-text">This is a wider card with supporting text below as a
-                                            natural lead-in to additional content. This content is a little bit
-                                            longer.</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <a href="{{ route('view.user.shop.detail',"Produk-1") }}" type="button" class="btn btn-sm btn-outline-secondary">View</a>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                            @forelse ($products as $item)
+                                <div class="col-md-4">
+                                    <div class="card mb-4 shadow-sm">
+                                        <img class="card-img-top" src="{{ asset($item->thumbnail) }}" alt="Card image cap">
+                                        <div class="card-body">
+                                            <p class="card-text">{{ $item->description }}</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="btn-group">
+                                                    <a href="{{ route('view.user.shop.detail', 'Produk-1') }}" type="button"
+                                                        class="btn btn-sm btn-outline-secondary">View</a>
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                </div>
+                                                <small class="text-muted">9 mins</small>
                                             </div>
-                                            <small class="text-muted">9 mins</small>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card mb-4 shadow-sm">
-                                    <img class="card-img-top" src="{{ asset('img/product_1.png') }}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <p class="card-text">This is a wider card with supporting text below as a
-                                            natural lead-in to additional content. This content is a little bit
-                                            longer.</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                 <a href="{{ route('view.user.shop.detail',"Produk-1") }}" type="button" class="btn btn-sm btn-outline-secondary">View</a>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                            </div>
-                                            <small class="text-muted">9 mins</small>
+                            @empty
+                                <div class="col-md-12">
+                                    <div class="card mb-4 shadow-sm">
+                                        <div class="card-body">
+                                            <p class="card-text">{{ 'Oops Produk belum ditambahkan' }}</p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card mb-4 shadow-sm">
-                                    <img class="card-img-top" src="{{ asset('img/product_1.png') }}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <p class="card-text">This is a wider card with supporting text below as a
-                                            natural lead-in to additional content. This content is a little bit
-                                            longer.</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                 <a href="{{ route('view.user.shop.detail',"Produk-1") }}" type="button" class="btn btn-sm btn-outline-secondary">View</a>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                            </div>
-                                            <small class="text-muted">9 mins</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="card mb-4 shadow-sm">
-                                    <img class="card-img-top" src="{{ asset('img/product_1.png') }}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <p class="card-text">This is a wider card with supporting text below as a
-                                            natural lead-in to additional content. This content is a little bit
-                                            longer.</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                 <a href="{{ route('view.user.shop.detail',"Produk-1") }}" type="button" class="btn btn-sm btn-outline-secondary">View</a>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                            </div>
-                                            <small class="text-muted">9 mins</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card mb-4 shadow-sm">
-                                    <img class="card-img-top" src="{{ asset('img/product_1.png') }}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <p class="card-text">This is a wider card with supporting text below as a
-                                            natural lead-in to additional content. This content is a little bit
-                                            longer.</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                 <a href="{{ route('view.user.shop.detail',"Produk-1") }}" type="button" class="btn btn-sm btn-outline-secondary">View</a>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                            </div>
-                                            <small class="text-muted">9 mins</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card mb-4 shadow-sm">
-                                    <img class="card-img-top" src="{{ asset('img/product_1.png') }}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <p class="card-text">This is a wider card with supporting text below as a
-                                            natural lead-in to additional content. This content is a little bit
-                                            longer.</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                 <a href="{{ route('view.user.shop.detail',"Produk-1") }}" type="button" class="btn btn-sm btn-outline-secondary">View</a>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                            </div>
-                                            <small class="text-muted">9 mins</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforelse
+                            {{--  --}}
                         </div>
                     </div>
                     {{-- </div> --}}
