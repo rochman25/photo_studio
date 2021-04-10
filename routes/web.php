@@ -37,6 +37,7 @@ Route::middleware(['guest'])->group(function () {
 
     Route::get('/', [UserHomeController::class, 'index'])->name('view.user.home');
     Route::get('/shop',[ShopController::class,'index'])->name('view.user.shop');
+    Route::get('/shop/{slug}',[ShopController::class,'index'])->name('view.user.shop.categories');
     Route::get('/shop/{id}',[ShopController::class,'show'])->name('view.user.shop.detail');
     Route::get('/portfolio',[UserHomeController::class,'portfolio'])->name('view.user.portfolio');
     Route::get('/portfolio/{id}',[UserHomeController::class,'detail_portfolio'])->name('view.user.portfolio.detail');

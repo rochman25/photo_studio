@@ -11,16 +11,22 @@ class ShopController extends Controller
 {
     //
 
-    public function index(){
+    public function index($slug = null){
         $serviceProduk = new Produk();
         $serviceKategori = new Kategori();
-        $products = $serviceProduk->getLastestProduk();
+        if($slug !== null){
+            $products = $serviceProduk->getLastestProdukByKategori($slug);
+        }else{
+            $products = $serviceProduk->getLastestProduk();
+        }
         $categories = $serviceKategori->getList();
         return view('pages.user.shop.index',compact('products','categories'));
     }
 
     public function show($id){
-        return view('pages.user.shop.detail');
+        $serviceProduk = new Produk();
+        $product = $serviceProduk->getActiveDetailProduct($id);
+        return view('pages.user.shop.detail',compact('product'));
     }
 
     public function cart(){

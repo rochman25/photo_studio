@@ -39,7 +39,7 @@
                             </div>
                             <ul class="list-group list-group-flush">
                                 @forelse ($categories as $item)
-                                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                                    <li class="list-group-item"><a href="{{ route('view.user.shop.categories',$item->slug) }}">{{ $item->nama }}</a></li>
                                 @empty
                                     <li class="list-group-item">{{ "Kategori Belum Ada" }}</li>
                                 @endforelse

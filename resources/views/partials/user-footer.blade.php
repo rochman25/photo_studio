@@ -23,7 +23,7 @@
 </footer><!-- End Footer --> --}}
 
     <!-- Footer -->
-    <footer id="footer" style="padding-bottom:0px">
+    <footer id="footer" class="footer" style="padding-bottom:0px">
       <!-- Grid container -->
       <div class="p-4">
         <!--Grid row-->

@@ -27,6 +27,14 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('user_assets/css/style.css') }}" rel="stylesheet">
+    <style>
+        /* .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        } */
+    </style>
     @stack('user_styles')
     <!-- =======================================================
   * Template Name: Regna - v2.1.0

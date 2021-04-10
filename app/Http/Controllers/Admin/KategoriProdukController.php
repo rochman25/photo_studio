@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategory;
+use App\Services\Kategori;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -44,11 +45,14 @@ class KategoriProdukController extends Controller
         ]);
         try{
             DB::beginTransaction();
-            ProductCategory::create($request->all());
+            $kategori_produk = new Kategori();
+            $kategori_produk->create($request->all());
+            // ProductCategory::create($request->all());
             DB::commit();
             return redirect()->route('kategori_produk.index')->with('success','Data Berhasil disimpan');
         }catch(Exception $e){
             DB::rollBack();
+            dd($e);
             return redirect()->back()->withErrors(['Error Code'=>$e->getCode()]);
         }
     }

@@ -18,13 +18,14 @@
     <!--end::Fonts -->
 
     <!--begin::Page Vendors Styles(used by this page) -->
-    <link href="{{ asset('admin_asset/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet"
-        type="text/css" />
+    <link href="{{ asset('admin_asset/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}"
+        rel="stylesheet" type="text/css" />
 
     <!--end::Page Vendors Styles -->
 
     <!--begin::Global Theme Styles(used by all pages) -->
-    <link href="{{ asset('admin_asset/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin_asset/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet"
+        type="text/css" />
     <link href="{{ asset('admin_asset/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 
     <!--end::Global Theme Styles -->
@@ -34,7 +35,7 @@
     <link href="{{ asset('admin_asset/assets/css/skins/header/menu/light.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin_asset/assets/css/skins/brand/dark.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin_asset/assets/css/skins/aside/dark.css') }}" rel="stylesheet" type="text/css" />
-    
+
     <!--end::Layout Skins -->
     <link rel="shortcut icon" href="{{ asset('admin_asset/assets/media/logos/favicon.ico') }}" />
     @stack('styles')
@@ -60,7 +61,7 @@
                     @yield('pages')
                 </div>
                 <div class="kt-footer  kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer">
-                    @include('partials.footer')
+                        @include('partials.footer')
                 </div>
             </div>
         </div>
