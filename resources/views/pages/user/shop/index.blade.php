@@ -19,10 +19,10 @@
             <div class="container">
 
                 <div class="d-flex justify-content-between align-items-center">
-                    <h2>Portfolio</h2>
+                    <h2>Shop</h2>
                     <ol>
                         <li><a href="{{ route('view.user.home') }}">Home</a></li>
-                        <li>Portfolio</li>
+                        <li>Shop</li>
                     </ol>
                 </div>
 
@@ -39,9 +39,11 @@
                             </div>
                             <ul class="list-group list-group-flush">
                                 @forelse ($categories as $item)
-                                    <li class="list-group-item"><a href="{{ route('view.user.shop.categories',$item->slug) }}">{{ $item->nama }}</a></li>
+                                    <li class="list-group-item"><a
+                                            href="{{ route('view.user.shop.categories', $item->slug) }}">{{ $item->nama }}</a>
+                                    </li>
                                 @empty
-                                    <li class="list-group-item">{{ "Kategori Belum Ada" }}</li>
+                                    <li class="list-group-item">{{ 'Kategori Belum Ada' }}</li>
                                 @endforelse
                                 {{-- <li id="headingOne" class="list-group-item">
                                     <a class="collapsed" data-toggle="collapse" data-target="#collapseExample"
@@ -69,14 +71,18 @@
                                     <div class="card mb-4 shadow-sm">
                                         <img class="card-img-top" src="{{ asset($item->thumbnail) }}" alt="Card image cap">
                                         <div class="card-body">
-                                            <p class="card-text">{{ $item->description }}</p>
+                                            <p class="card-text">
+                                                <h4 style="font-weight: bold">
+                                                    {{ $item->nama }}
+                                                </h4>
+                                                @currency($item->harga)
+                                            </p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="btn-group">
                                                     <a href="{{ route('view.user.shop.detail', 'Produk-1') }}" type="button"
-                                                        class="btn btn-sm btn-outline-secondary">View</a>
-                                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                        class="btn btn-sm btn-outline-secondary">Pesan</a>
                                                 </div>
-                                                <small class="text-muted">9 mins</small>
+                                                {{-- <small class="text-muted">9 mins</small> --}}
                                             </div>
                                         </div>
                                     </div>
