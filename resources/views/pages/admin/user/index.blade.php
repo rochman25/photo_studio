@@ -67,7 +67,7 @@
                                         </div>
                                     </div>
                                 @endif
-                                <table class="table table-bordered table-hover">
+                                <table id="kt_datatable" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -83,16 +83,24 @@
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->email }}</td>
                                                 <td>
+                                                    <button type="button"
+                                                        data-url="{{ route('user.reset_password', $item->id) }}"
+                                                        class="btn btn-sm btn-warning btn-reset"><i
+                                                            class="flaticon2-refresh"></i>
+                                                    </button>
                                                     <a href="{{ route('user.edit', $item->id) }}"
                                                         class="btn btn-sm btn-success"><i class="flaticon-edit"></i></a>
-                                                    <button type="button" data-url="{{ route('user.destroy', $item->id) }}"
-                                                        class="btn btn-sm btn-danger btn-hapus"><i class="flaticon2-trash"></i>
-                                                        </a>
+                                                    <button type="button"
+                                                        data-url="{{ route('user.destroy', $item->id) }}"
+                                                        class="btn btn-sm btn-danger btn-hapus"><i
+                                                            class="flaticon2-trash"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @empty
                                             <tr>
-                                                <th colspan="4" scope="row" style="text-align: center">-- Belum ada data-- </th>
+                                                <th colspan="4" scope="row" style="text-align: center">-- Belum ada data--
+                                                </th>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -126,7 +134,7 @@
                     confirmButtonText: 'Ya',
                     cancelButtonText: 'Tidak',
                     reverseButtons: true,
-                }).then(function(result){
+                }).then(function(result) {
                     if (result.value) {
                         $.ajax({
                             url: url,
@@ -138,7 +146,8 @@
                             success: function(response) {
                                 console.log(response)
                                 if (response.success) {
-                                    swal.fire("Sukses!", "Data berhasil dihapus", "success");
+                                    swal.fire("Sukses!", "Data berhasil dihapus",
+                                        "success");
                                     setTimeout(location.reload.bind(location), 1000);
                                 } else {
                                     swal("Error", "Maaf terjadi kesalahan", "error");
@@ -150,6 +159,45 @@
                     }
                 });
             });
+
+            $('.btn-reset').click(function() {
+                // alert("Hapus fired.")
+                const url = $(this).data('url');
+                const idBtn = $(this).data('id');
+                swal.fire({
+                    title: "Konfirmasi",
+                    text: "Apakah anda yakin ingin mereset password user ini ?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya',
+                    cancelButtonText: 'Tidak',
+                    reverseButtons: true,
+                }).then(function(result) {
+                    if (result.value) {
+                        $.ajax({
+                            url: url,
+                            type: "POST",
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                                id: idBtn
+                            },
+                            success: function(response) {
+                                console.log(response)
+                                if (response.success) {
+                                    swal.fire("Sukses!", "Data berhasil direset",
+                                        "success");
+                                    setTimeout(location.reload.bind(location), 1000);
+                                } else {
+                                    swal("Error", "Maaf terjadi kesalahan", "error");
+                                }
+                            }
+                        });
+                    } else {
+                        swal.close();
+                    }
+                });
+            });
+
         });
 
     </script>

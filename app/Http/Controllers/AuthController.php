@@ -31,7 +31,9 @@ class AuthController extends Controller
                 $request->session()->regenerate();
                 return response()->json(["status" => true,"message" => route('view.home')]);
             }else{
-                return response()->json(["status" => false,"message" => "Mohon maaf username dan password tidak dapat kami kenali."]);
+                return response()->json(["status" => false,"message" => Auth::attempt($credentials)
+                // "Mohon maaf username dan password tidak dapat kami kenali."
+                ]);
             }
         } catch (Exception $e) {
             //throw $th;

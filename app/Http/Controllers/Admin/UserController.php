@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserRole;
+use App\Repositories\UserRepository;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+
+    protected $userRepository;
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +55,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "name" => "required|unique:users,name|min:4",
+            "name" => "required|unique:users,name|min:4|alpha_dash",
             "email" => "required|email|unique:users,email",
             "password" => "required|confirmed|min:4",
             "role_id" => "required",
@@ -107,7 +116,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            "name" => "required|min:4|unique:users,name,".$id,
+            "name" => "required|min:4|alpha_dash|unique:users,name,".$id,
             "email" => "required|email|unique:users,email,".$id,
             "password" => "nullable|confirmed|min:4",
             "role_id" => "required",
@@ -154,4 +163,19 @@ class UserController extends Controller
             return response()->json(['success' => false,'errors' => $e->getMessage()]);
         }
     }
+
+    public function resetPassword(Request $request, $id){
+        try{
+            DB::beginTransaction();
+            $user = $this->userRepository->resetPassword($id);
+            DB::commit();
+            $success = $user;         
+            return response()->json(['success'=>$success]);
+        }catch(Exception $e){
+            // dd($e);
+            DB::rollBack();
+            return response()->json(['success' => false,'errors' => $e->getMessage()]);
+        }
+    }
+
 }

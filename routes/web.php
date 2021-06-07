@@ -57,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('admin/kategori_produk', KategoriProdukController::class);
 
     //user
+    Route::post('admin/user/{id}/reset_password',[UserController::class,'resetPassword'])->name('user.reset_password');
     Route::resource('admin/user', UserController::class);
     
     //role
