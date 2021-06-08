@@ -27,4 +27,9 @@ class ProductRepository {
         return $this->product->where('id',$id)->where('status','active')->first();
     }
 
+    public function getDetailBySlug($slug){
+        $name = str_replace("-"," ",$slug);
+        return $this->product->where('nama',$name)->first();
+    }
+
 }

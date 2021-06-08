@@ -8,7 +8,7 @@
                     {{ 'Role' }} </h3>
                 <span class="kt-subheader__separator kt-hidden"></span>
             </div>
-            <div class="kt-subheader__toolbar">
+            {{-- <div class="kt-subheader__toolbar">
                 <div class="kt-subheader__wrapper">
                     <div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="Tambah Data"
                         data-placement="left">
@@ -32,7 +32,7 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 

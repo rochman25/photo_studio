@@ -4,28 +4,32 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Services\Kategori;
-use App\Services\Produk;
+use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
     //
+    protected $productRepository;
+
+    public function __construct(ProductRepository $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
 
     public function index($slug = null){
-        $serviceProduk = new Produk();
         $serviceKategori = new Kategori();
         if($slug !== null){
-            $products = $serviceProduk->getLastestProdukByKategori($slug);
+            $products = $this->productRepository->getLastestProdukByKategori($slug);
         }else{
-            $products = $serviceProduk->getLastestProduk();
+            $products = $this->productRepository->getLastestProduk();
         }
         $categories = $serviceKategori->getList();
         return view('pages.user.shop.index',compact('products','categories'));
     }
 
     public function show($id){
-        $serviceProduk = new Produk();
-        $product = $serviceProduk->getActiveDetailProduct($id);
+        $product = $this->productRepository->getDetailBySlug($id);
         return view('pages.user.shop.detail',compact('product'));
     }
 
