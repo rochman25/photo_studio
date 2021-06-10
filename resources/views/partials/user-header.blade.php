@@ -16,7 +16,6 @@
                 <li class="{{ request()->is('about_us') ? 'menu-active' : '' }}"><a href="{{ route('view.user.about_us') }}">About Us</a></li>
                 <li class="{{ request()->is('contact_us') ? 'menu-active' : '' }}"><a href="{{ route('view.user.contact_us') }}">Contact Us</a></li>
                 <li class="{{ request()->is('login') ? 'menu-active' : '' }}"><a href="{{ route('login') }}">Login</a></li>
-                <li class="{{ request()->is('register') ? 'menu-active' : '' }}"><a href="{{ route('register') }}">Register</a></li>
             </ul>
         </nav><!-- #nav-menu-container -->
     </div>

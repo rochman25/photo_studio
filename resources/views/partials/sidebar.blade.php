@@ -154,7 +154,7 @@
                     <h4 class="kt-menu__section-text">Pengaturan</h4>
                     <i class="kt-menu__section-icon flaticon-more-v2"></i>
                 </li>
-                <li class="kt-menu__item" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="#"
+                <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a
                         class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
@@ -168,8 +168,15 @@
                                         d="M20,22 C21.6568542,22 23,20.6568542 23,19 C23,17.8954305 22,16.2287638 20,14 C18,16.2287638 17,17.8954305 17,19 C17,20.6568542 18.3431458,22 20,22 Z"
                                         fill="#000000" opacity="0.3" />
                                 </g>
-                            </svg></span><span class="kt-menu__link-text">Landing Page</span></a>
-
+                            </svg></span><span class="kt-menu__link-text">Personalisasi</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                            <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
+                                <ul class="kt-menu__subnav">
+                                    <li class="kt-menu__item" aria-haspopup="true"><a href="#" class="kt-menu__link"><i class="kt-menu__link-icon flaticon2-cube-1"></i><span class="kt-menu__link-text">Banner</span></a>
+                                    </li>
+                                    <li class="kt-menu__item" aria-haspopup="true"><a href="#" class="kt-menu__link"><i class="kt-menu__link-icon flaticon2-cube-1"></i><span class="kt-menu__link-text">Portfolio</span></a>
+                                    </li>
+                                </ul>
+                            </div>
                 </li>
                 <li class="kt-menu__item @if(Route::currentRouteName() == 'role.index') kt-menu__item--active @endif" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="{{ route('role.index') }}"
                         class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-icon">
