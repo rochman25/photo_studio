@@ -24,6 +24,10 @@ class PortfolioRepository {
         return $this->portfolio->create([
             "nama" => $data['nama'],
             "caption" => $data['caption'],
+            "file_name" => $data['file_name'], 
+            "file_path" => $data['file_path'], 
+            "file_url" => $data['file_url'], 
+            "order" => $data['order']
         ]);
     }
 
@@ -31,6 +35,10 @@ class PortfolioRepository {
         return $this->portfolio->find($id)->update([
             "nama" => $data['nama'],
             "caption" => $data['caption'],
+            "file_name" => $data['file_name'], 
+            "file_path" => $data['file_path'], 
+            "file_url" => $data['file_url'], 
+            "order" => $data['order']
         ]);
     }
 

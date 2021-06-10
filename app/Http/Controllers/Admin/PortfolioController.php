@@ -3,10 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\PortFolioImageRepository;
+use App\Repositories\PortfolioRepository;
 use Illuminate\Http\Request;
 
 class PortfolioController extends Controller
 {
+    protected $portfolioRepository, $portfolioImageRepository;
+
+    public function __construct(PortfolioRepository $portfolioRepository, PortFolioImageRepository $portfolioImageRepository)
+    {
+        $this->portfolioRepository = $portfolioRepository;
+        $this->portfolioImageRepository = $portfolioImageRepository;        
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +24,7 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.admin.portfolio.index');
     }
 
     /**
@@ -24,7 +34,7 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.portfolio.create');
     }
 
     /**
@@ -57,7 +67,8 @@ class PortfolioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $portfolio = $this->portfolioRepository->getById($id);
+        return view('pages.admin.portfolio.edit',compact('portfolio'));
     }
 
     /**
