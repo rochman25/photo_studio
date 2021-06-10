@@ -110,7 +110,7 @@
                                             <label>Ulangi Password</label>
                                             <input type="password" name="password_confirmation"
                                                 class="form-control @error('password') is-invalid @enderror"
-                                                aria-describedby="password" placeholder="Masukkan diskon produk"
+                                                aria-describedby="password" placeholder="Masukkan Password lagi"
                                                 value="{{ old('password') }}">
                                             @error('password')
                                                 <div class="invalid-feedback">{{ $message }}</div>
