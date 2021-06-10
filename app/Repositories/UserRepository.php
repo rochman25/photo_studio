@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\User;
+use App\Models\UserRole;
 use Illuminate\Support\Facades\Hash;
 
 class UserRepository {
@@ -47,6 +48,13 @@ class UserRepository {
         $user->password = Hash::make($user->name);
         $user->save();
         return $user;
+    }
+
+    public function assignUserToRole($data){
+        return UserRole::create([
+            "user_id" => $data['user_id'],
+            "role_id" => $data['role_id']
+        ]);
     }
 
 }

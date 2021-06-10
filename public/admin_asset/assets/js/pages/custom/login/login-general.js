@@ -78,9 +78,8 @@ var KTLoginGeneral = function() {
 
             form.validate({
                 rules: {
-                    email: {
+                    name: {
                         required: true,
-                        email: true
                     },
                     password: {
                         required: true
@@ -124,7 +123,7 @@ var KTLoginGeneral = function() {
 
             form.validate({
                 rules: {
-                    fullname: {
+                    username: {
                         required: true
                     },
                     email: {
@@ -134,12 +133,9 @@ var KTLoginGeneral = function() {
                     password: {
                         required: true
                     },
-                    rpassword: {
+                    password_confirmation: {
                         required: true
                     },
-                    agree: {
-                        required: true
-                    }
                 }
             });
 
@@ -150,7 +146,8 @@ var KTLoginGeneral = function() {
             btn.addClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', true);
 
             form.ajaxSubmit({
-                url: '',
+                url: $('#form_register').attr('action'),
+                method:"POST",
                 success: function(response, status, xhr, $form) {
                 	// similate 2s delay
                 	setTimeout(function() {
@@ -163,9 +160,26 @@ var KTLoginGeneral = function() {
 	                    var signInForm = login.find('.kt-login__signin form');
 	                    signInForm.clearForm();
 	                    signInForm.validate().resetForm();
-
-	                    showErrorMsg(signInForm, 'success', 'Thank you. To complete your registration please check your email.');
+                        showErrorMsg(signInForm, 'success', 'Terima Kasih. Silahkan masuk untuk melanjutkan.')
+	                    // showErrorMsg(signInForm, 'success', 'Thank you. To complete your registration please check your email.');
 	                }, 2000);
+                },
+                error: function(response, status, xhr){
+                    if(xhr == "Unprocessable Entity"){
+                        var msg;
+                        console.log(response.responseJSON)
+                        btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
+                        displaySignUpForm();
+	                    var signUpForm = login.find('.kt-login__signup form');
+                        msg = response.responseJSON.message+"<br/>"
+                        // showErrorMsg(signUpForm, 'danger', response.responseJSON.message)
+                        var errorArr = response.responseJSON.errors
+                        for (const property in errorArr) {
+                          msg = msg + errorArr[property]+"<br/>"
+                          console.log(`${property}: ${errorArr[property]}`);
+                        }
+                        showErrorMsg(signUpForm,'danger', msg)
+                    }
                 }
             });
         });

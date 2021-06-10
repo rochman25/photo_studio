@@ -34,6 +34,7 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/login', [AuthController::class, 'loginView'])->name('login');
     Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('post.login');
     Route::get('/register',[AuthController::class,'registerView'])->name('register');
+    Route::post('/register/user',[AuthController::class,'registerNewUser'])->name('post.register');
 
     Route::get('/', [UserHomeController::class, 'index'])->name('view.user.home');
     Route::get('/shop',[ShopController::class,'index'])->name('view.user.shop');
