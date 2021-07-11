@@ -41,17 +41,17 @@
                                 <div class="info">
                                     <div>
                                         <i class="fa fa-map-marker"></i>
-                                        <p>A108 Adam Street<br>New York, NY 535022</p>
+                                        <p>{{ $address }}</p>
                                     </div>
 
                                     <div>
                                         <i class="fa fa-envelope"></i>
-                                        <p>info@example.com</p>
+                                        <p>{{ $email }}</p>
                                     </div>
 
                                     <div>
                                         <i class="fa fa-phone"></i>
-                                        <p>+1 5589 55488 55s</p>
+                                        <p>{{ $phone }}</p>
                                     </div>
                                 </div>
 

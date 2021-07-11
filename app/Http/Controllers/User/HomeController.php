@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Hero;
 use App\Models\Portfolio;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use PDO;
 
@@ -19,7 +20,17 @@ class HomeController extends Controller
     {
         $heros = Hero::orderby('order','ASC')->get();
         $portfolios = Portfolio::limit(9)->get();
-        return view('pages.user.home',compact('heros','portfolios'));
+        $settings = Setting::all();
+        $aboutUs = "";
+        $photoAboutUs = "";
+        foreach($settings as $index => $item) {
+            if($item->kode == "P002"){
+                $aboutUs = $item->value;
+            }else if($item->kode == "P003"){
+                $photoAboutUs = $item->value;
+            }
+        }
+        return view('pages.user.home',compact('heros','portfolios','aboutUs','photoAboutUs'));
     }
 
     /**
@@ -103,7 +114,20 @@ class HomeController extends Controller
     }
 
     public function contact(){
-        return view('pages.user.etc.contact_us');
+        $settings = Setting::all();
+        $email = "";
+        $phone = "";
+        $address = "";
+        foreach($settings as $index => $item){
+            if($item->kode == "P004"){
+                $address = $item->value;
+            }else if($item->kode == "P005"){
+                $email = $item->value;
+            }else if($item->kode == "P006"){
+                $phone = $item->value;
+            }
+        }
+        return view('pages.user.etc.contact_us',compact('email','phone','address'));
     }
 
 }
