@@ -14,39 +14,33 @@
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100" style="height: 100vh" src="{{ asset('img/hero_1.png') }}"
-                            alt="First slide">
-                        <div class="carousel-caption d-none d-md-block">
+                    @forelse ($heros as $item)
+                        <div class="carousel-item">
+                            <img class="d-block w-100" style="height: 100vh" src="{{ public_path($item->file_url) }}"
+                                alt="First slide">
+                            {{-- <div class="carousel-caption d-none d-md-block">
                             <h5>Slide label</h5>
                             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia, dolorum rerum in
                                 laudantium
-                                labore error ex sint facere a iusto, nam minima quas vero aliquid, id tempora ipsam minus
+                                labore error ex sint facere a iusto, nam minima quas vero aliquid, id tempora ipsam
+                                minus
                                 expedita?</p>
+                        </div> --}}
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" style="height: 100vh" src="{{ asset('img/hero_1.png') }}"
-                            alt="Second slide">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Slide label</h5>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia, dolorum rerum in
-                                laudantium
-                                labore error ex sint facere a iusto, nam minima quas vero aliquid, id tempora ipsam minus
-                                expedita?</p>
+                    @empty
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" style="height: 100vh" src="{{ asset('img/hero_1.png') }}"
+                                alt="First slide">
+                            {{-- <div class="carousel-caption d-none d-md-block">
+                                <h5>Slide label</h5>
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia, dolorum rerum in
+                                    laudantium
+                                    labore error ex sint facere a iusto, nam minima quas vero aliquid, id tempora ipsam
+                                    minus
+                                    expedita?</p>
+                            </div> --}}
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" style="height: 100vh" src="{{ asset('img/hero_1.png') }}"
-                            alt="Third slide">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Slide label</h5>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia, dolorum rerum in
-                                laudantium
-                                labore error ex sint facere a iusto, nam minima quas vero aliquid, id tempora ipsam minus
-                                expedita?</p>
-                        </div>
-                    </div>
+                    @endforelse
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -72,124 +66,25 @@
                 </div>
 
                 <div class="row" data-aos="fade-up" data-aos-delay="200">
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <img src="{{ asset('img/category_1.png') }}" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>App 1</h4>
-                            <p>App</p>
-                            <a href="{{ asset('img/category_1.png') }}"
-                                data-gall="portfolioGallery" class="venobox preview-link" title="App 1"><i
-                                    class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
+                    @forelse ($portfolios as $item)
+                        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                            <img src="{{ asset('img/category_1.png') }}" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>App 1</h4>
+                                <p>App</p>
+                                <a href="{{ asset('img/category_1.png') }}" data-gall="portfolioGallery"
+                                    class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+                                <a href="portfolio-details.html" class="details-link" title="More Details"><i
+                                        class="bx bx-link"></i></a>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <img src="{{ asset('img/category_1.png') }}" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Web 3</h4>
-                            <p>Web</p>
-                            <a href="{{ asset('img/category_1.png') }}"
-                                data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i
-                                    class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
+                    @empty
+                        <div class="col-lg-12 portfolio-item">
+                            <div class="section-header">
+                                <p class="section-description">{{ 'Portfolio Masih Kosong.' }}</p>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <img src="{{ asset('img/category_1.png') }}" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>App 2</h4>
-                            <p>App</p>
-                            <a href="{{ asset('img/category_1.png') }}"
-                                data-gall="portfolioGallery" class="venobox preview-link" title="App 2"><i
-                                    class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <img src="{{ asset('img/category_1.png') }}" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Card 2</h4>
-                            <p>Card</p>
-                            <a href="{{ asset('img/category_1.png') }}"
-                                data-gall="portfolioGallery" class="venobox preview-link" title="Card 2"><i
-                                    class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <img src="{{ asset('img/category_1.png') }}" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Web 2</h4>
-                            <p>Web</p>
-                            <a href="{{ asset('img/category_1.png') }}"
-                                data-gall="portfolioGallery" class="venobox preview-link" title="Web 2"><i
-                                    class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <img src="{{ asset('img/category_1.png') }}" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>App 3</h4>
-                            <p>App</p>
-                            <a href="{{ asset('img/category_1.png') }}"
-                                data-gall="portfolioGallery" class="venobox preview-link" title="App 3"><i
-                                    class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <img src="{{ asset('img/category_1.png') }}" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Card 1</h4>
-                            <p>Card</p>
-                            <a href="{{ asset('img/category_1.png') }}"
-                                data-gall="portfolioGallery" class="venobox preview-link" title="Card 1"><i
-                                    class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <img src="{{ asset('img/category_1.png') }}" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Card 3</h4>
-                            <p>Card</p>
-                            <a href="{{ asset('img/category_1.png') }}"
-                                data-gall="portfolioGallery" class="venobox preview-link" title="Card 3"><i
-                                    class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <img src="{{ asset('img/category_1.png') }}" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Web 3</h4>
-                            <p>Web</p>
-                            <a href="{{ asset('img/category_1.png') }}"
-                                data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i
-                                    class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
+                    @endforelse
                 </div>
 
             </div>

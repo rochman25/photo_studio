@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Hero;
+use App\Models\Portfolio;
 use Illuminate\Http\Request;
 use PDO;
 
@@ -15,7 +17,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.user.home');
+        $heros = Hero::orderby('order','ASC')->get();
+        $portfolios = Portfolio::limit(9)->get();
+        return view('pages.user.home',compact('heros','portfolios'));
     }
 
     /**
