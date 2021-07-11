@@ -32,67 +32,24 @@
                         </div> --}}
 
                         <div class="row" data-aos="fade-up" data-aos-delay="200">
-
-                            <div class="col-lg-12 col-md-12 portfolio-item filter-app">
-                                <img src="{{ asset('img/portfolio_1.png') }}" class="img-fluid" alt="">
-                                <div class="portfolio-info">
-                                    <h4>App 1</h4>
-                                    <p>App</p>
-                                    <a href="{{ asset('img/portfolio_1.png') }}" data-gall="portfolioGallery"
-                                        class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-                                    <a href="{{ route('view.user.portfolio.detail',"Judul-portfolio 1") }}" class="details-link" title="More Details"><i
-                                            class="bx bx-link"></i></a>
+                            @forelse ($portfolios as $item)
+                                <div class="col-lg-12 col-md-12 portfolio-item filter-app">
+                                    <img src="{{ asset('img/portfolio_1.png') }}" class="img-fluid" alt="">
+                                    <div class="portfolio-info">
+                                        <h4>App 1</h4>
+                                        <p>App</p>
+                                        <a href="{{ public_path($item->file_url) }}" data-gall="portfolioGallery"
+                                            class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+                                        <a href="{{ route('view.user.portfolio.detail', $item->id) }}"
+                                            class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="col-lg-12 col-md-12 portfolio-item filter-web">
-                                <img src="{{ asset('img/portfolio_1.png') }}" class="img-fluid" alt="">
-                                <div class="portfolio-info">
-                                    <h4>Web 3</h4>
-                                    <p>Web</p>
-                                    <a href="{{ asset('img/portfolio_1.png') }}" data-gall="portfolioGallery"
-                                        class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-                                    <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                            class="bx bx-link"></i></a>
+                                {{ $paginate }}
+                            @empty
+                                <div class="col-lg-12 col-md-12 portfolio-item filter-app">
+                                    <p class="section-description" style="text-align: center">{{ 'Portfolio Masih Kosong.' }}</p>
                                 </div>
-                            </div>
-
-                            <div class="col-lg-12 col-md-12 portfolio-item filter-app">
-                                <img src="{{ asset('img/portfolio_1.png') }}" class="img-fluid" alt="">
-                                <div class="portfolio-info">
-                                    <h4>App 2</h4>
-                                    <p>App</p>
-                                    <a href="{{ asset('img/portfolio_1.png') }}" data-gall="portfolioGallery"
-                                        class="venobox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
-                                    <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                            class="bx bx-link"></i></a>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12 col-md-12 portfolio-item filter-card">
-                                <img src="{{ asset('img/portfolio_1.png') }}" class="img-fluid" alt="">
-                                <div class="portfolio-info">
-                                    <h4>Card 2</h4>
-                                    <p>Card</p>
-                                    <a href="{{ asset('img/portfolio_1.png') }}" data-gall="portfolioGallery"
-                                        class="venobox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
-                                    <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                            class="bx bx-link"></i></a>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12 col-md-12 portfolio-item filter-web">
-                                <img src="{{ asset('img/portfolio_1.png') }}" class="img-fluid" alt="">
-                                <div class="portfolio-info">
-                                    <h4>Web 2</h4>
-                                    <p>Web</p>
-                                    <a href="{{ asset('img/category_1.png') }}" data-gall="portfolioGallery"
-                                        class="venobox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
-                                    <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                            class="bx bx-link"></i></a>
-                                </div>
-                            </div>
-
+                            @endforelse
                         </div>
 
                     </div>

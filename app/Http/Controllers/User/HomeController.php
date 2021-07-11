@@ -89,11 +89,13 @@ class HomeController extends Controller
     }
 
     public function portfolio(){
-        return view('pages.user.etc.portfolio');
+        $portfolios = Portfolio::paginate(10);
+        return view('pages.user.etc.portfolio',compact('portfolios'));
     }
 
-    public function detail_portfolio(){
-        return view('pages.user.etc.detail_portfolio');
+    public function detail_portfolio($id){
+        $portfolio = Portfolio::find($id);
+        return view('pages.user.etc.detail_portfolio',compact('portfolio'));
     }
 
     public function about(){
