@@ -15,7 +15,13 @@
                 <li class="{{ request()->is('portfolio') ? 'menu-active' : '' }}"><a href="{{ route('view.user.portfolio') }}">Portfolio</a></li>
                 <li class="{{ request()->is('about_us') ? 'menu-active' : '' }}"><a href="{{ route('view.user.about_us') }}">About Us</a></li>
                 <li class="{{ request()->is('contact_us') ? 'menu-active' : '' }}"><a href="{{ route('view.user.contact_us') }}">Contact Us</a></li>
-                <li class="{{ request()->is('login') ? 'menu-active' : '' }}"><a href="{{ route('login') }}">Login</a></li>
+                @auth
+                <li><a href="{{ route('view.home') }}">Dashboard</a></li>    
+                @endauth
+                
+                @guest
+                    <li class="{{ request()->is('login') ? 'menu-active' : '' }}"><a href="{{ route('login') }}">Login</a></li>
+                @endguest
             </ul>
         </nav><!-- #nav-menu-container -->
     </div>

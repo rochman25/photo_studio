@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::middleware(['guest'])->group(function () {
+// Route::middleware(['guest'])->group(function () {
     //
     Route::get('/login', [AuthController::class, 'loginView'])->name('login');
     Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('post.login');
@@ -45,7 +45,7 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/about_us',[UserHomeController::class,'about'])->name('view.user.about_us');
     Route::get('/contact_us',[UserHomeController::class,'contact'])->name('view.user.contact_us');
     Route::get('/cart',[ShopController::class,'cart'])->name('view.user.cart');
-});
+// });
 
 Route::middleware(['auth'])->group(function () {
     Route::get('admin/home', [HomeController::class, 'index'])->name('view.home');
