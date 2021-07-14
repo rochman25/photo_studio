@@ -173,7 +173,7 @@
                                 <ul class="kt-menu__subnav">
                                     <li class="kt-menu__item" aria-haspopup="true"><a href="{{ route('hero.index') }}" class="kt-menu__link"><i class="kt-menu__link-icon flaticon2-cube-1"></i><span class="kt-menu__link-text">Banner</span></a>
                                     </li>
-                                    <li class="kt-menu__item" aria-haspopup="true"><a href="#" class="kt-menu__link"><i class="kt-menu__link-icon flaticon2-cube-1"></i><span class="kt-menu__link-text">Portfolio</span></a>
+                                    <li class="kt-menu__item" aria-haspopup="true"><a href="{{ route('portfolio.index') }}" class="kt-menu__link"><i class="kt-menu__link-icon flaticon2-cube-1"></i><span class="kt-menu__link-text">Portfolio</span></a>
                                     </li>
                                 </ul>
                             </div>

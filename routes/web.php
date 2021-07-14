@@ -76,7 +76,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('admin/hero',HeroController::class);
 
     //portfolio
-    // Route::resource('/admin/portfolio', [PortfolioController::class]);
+    Route::resource('/admin/portfolio', PortfolioController::class);
     
     Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 });
