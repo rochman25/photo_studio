@@ -5,14 +5,14 @@
         <div class="kt-container  kt-container--fluid ">
             <div class="kt-subheader__main">
                 <h3 class="kt-subheader__title">
-                    {{ "Kategori Produk" }} </h3>
+                    {{ 'Order Booking' }} </h3>
                 <span class="kt-subheader__separator kt-hidden"></span>
             </div>
             <div class="kt-subheader__toolbar">
                 <div class="kt-subheader__wrapper">
                     <div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="Tambah Data"
                         data-placement="left">
-                        <a href="{{ route('kategori_produk.create') }}" class="btn btn-icon" aria-haspopup="true" aria-expanded="false">
+                        {{-- <a href="{{ route('kategori_produk.create') }}" class="btn btn-icon" aria-haspopup="true" aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                 height="24px" viewBox="0 0 24 24" version="1.1"
                                 class="kt-svg-icon kt-svg-icon--success kt-svg-icon--md">
@@ -28,7 +28,7 @@
                             </svg>
 
                             <!--<i class="flaticon2-plus"></i>-->
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                     <div class="kt-portlet__head">
                         <div class="kt-portlet__head-label">
                             <h3 class="kt-portlet__head-title">
-                                Hoverable Table
+                                Data Order Booking
                             </h3>
                         </div>
                     </div>
@@ -57,30 +57,28 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
                                             <th>Username</th>
+                                            <th>Waktu</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Jhon</td>
-                                            <td>Stone</td>
-                                            <td>@jhon</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Lisa</td>
-                                            <td>Nilson</td>
-                                            <td>@lisa</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
+                                        @php($no = 1)
+                                        @forelse ($bookings as $item)
+                                            <tr>
+                                                <th scope="row">{{ $no }}</th>
+                                                <td>{{ $item->user->name }}</td>
+                                                <td>{!! "Tanggal: ".\Carbon\Carbon::parse($item->tanggal_booking )->format('d-m-Y')."<br/> Pukul : ".$item->waktu_booking !!}</td>
+                                                <td>{{ $item->status }}</td>
+                                                <td>
+                                                    <a href="{{ route('booking.show',$item->id) }}" class="btn btn-sm btn-info"><i class="fa fa-info"></i></a>
+                                                    <a href="" class="btn btn-sm btn-danger"><i class="fa fa-window-close"></i></a>
+                                                </td>
+                                            </tr>
+                                        @empty
+
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

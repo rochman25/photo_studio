@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -56,7 +57,14 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        //
+        $booking = Booking::find($id);
+        $product_ids = explode(",",$booking->detail->product_id);
+        $products = [];
+        foreach($product_ids as $index => $item){
+            $products[] = Product::with(['category'])->find($item)->toArray();
+        }
+        // dd($products);
+        return view('pages.admin.booking.detail',compact('booking','products'));
     }
 
     /**
