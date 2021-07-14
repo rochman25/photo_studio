@@ -129,4 +129,19 @@ class BookingController extends Controller
         }
     }
 
+    public function cancelOrder(Request $request, $id){
+        try {
+            DB::beginTransaction();
+            $order = Booking::where('id',$id)->update([
+                'status' => 'cancel'
+            ]);
+            DB::commit();
+            $success = $order;
+            return response()->json(['success'=>$success]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['success' => false,'errors' => $th->getCode()]);
+        }
+    }
+
 }
