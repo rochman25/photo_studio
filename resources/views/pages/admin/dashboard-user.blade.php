@@ -18,15 +18,14 @@
 
         <!--Begin::Row-->
         <div class="row">
-            <div class="col-lg-4 col-xl-4 order-lg-1 order-xl-1">
-
+            <div class="col-lg-12 col-xl-12 order-lg-1 order-xl-1">
                 <!--begin:: Widgets/Activity-->
                 <div
                     class="kt-portlet kt-portlet--fit kt-portlet--head-lg kt-portlet--head-overlay kt-portlet--skin-solid kt-portlet--height-fluid">
                     <div class="kt-portlet__head kt-portlet__head--noborder kt-portlet__space-x">
                         <div class="kt-portlet__head-label">
                             <h3 class="kt-portlet__head-title">
-                                Summary Order
+                                Recent Activity
                             </h3>
                         </div>
                     </div>
@@ -116,152 +115,8 @@
 
                 <!--end:: Widgets/Activity-->
             </div>
-            <div class="col-lg-4 col-xl-4 order-lg-1 order-xl-1">
-
-                <!--Begin::Portlet-->
-                <div class="kt-portlet kt-portlet--height-fluid">
-                    <div class="kt-portlet__head">
-                        <div class="kt-portlet__head-label">
-                            <h3 class="kt-portlet__head-title">
-                                Recent Order
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="kt-portlet__body">
-
-                        <!--Begin::Timeline 3 -->
-                        <div class="kt-timeline-v2">
-                            <div class="kt-timeline-v2__items  kt-padding-top-25 kt-padding-bottom-30">
-                                @foreach ($new_orders as $item)
-                                    <div class="kt-timeline-v2__item">
-                                        {{-- <span class="kt-timeline-v2__item-time">{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span> --}}
-                                        <div class="kt-timeline-v2__item-cricle">
-                                            <i class="fa fa-genderless kt-font-danger"></i>
-                                        </div>
-                                        <div class="kt-timeline-v2__item-text  kt-padding-top-5">
-                                            <a
-                                                href="{{ route('booking.show', $item->id) }}">{{ $item->detail->first_name . ' ' . $item->detail->last_name }}</a><br />
-                                            {{ $item->detail->phone . ' ' . $item->detail->email }} <br />
-                                            {{ 'Rp ' . number_format($item->total, 0, '.', '.') }}
-                                        </div>
-                                        <div class="kt-timeline-v2__item-text  kt-padding-top-5">
-                                            {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <!--End::Timeline 3 -->
-                    </div>
-                </div>
-                <!--End::Portlet-->
-            </div>
-            <div class="col-xl-4 col-lg-4 order-lg-1 order-xl-1">
-
-                <!--begin:: Widgets/New Users-->
-                <div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid">
-                    <div class="kt-portlet__head">
-                        <div class="kt-portlet__head-label">
-                            <h3 class="kt-portlet__head-title">
-                                New Users
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="kt-portlet__body">
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="kt_widget4_tab1_content">
-                                <div class="kt-widget4">
-                                    @foreach ($new_users as $index => $item)
-                                        <div class="kt-widget4__item">
-                                            <div class="kt-widget4__pic kt-widget4__pic--pic">
-                                                <img src="assets/media/users/100_4.jpg" alt="">
-                                            </div>
-                                            <div class="kt-widget4__info">
-                                                <a href="#" class="kt-widget4__username">
-                                                    {{ $item->name }}
-                                                </a>
-                                                <p class="kt-widget4__text">
-                                                    {{ $item->email }}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--end:: Widgets/New Users-->
-            </div>
         </div>
-
         <!--End::Row-->
-
-        <!--Begin::Row-->
-        <div class="row">
-            {{-- <div class="col-xl-8 col-lg-12 order-lg-3 order-xl-1">
-
-                <!--begin:: Widgets/Best Sellers-->
-                <div class="kt-portlet kt-portlet--height-fluid">
-                    <div class="kt-portlet__head">
-                        <div class="kt-portlet__head-label">
-                            <h3 class="kt-portlet__head-title">
-                                Best Sellers
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="kt-portlet__body">
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="kt_widget5_tab1_content" aria-expanded="true">
-                                <div class="kt-widget5">
-                                    @foreach ($best_sellers as $item)
-                                        <div class="kt-widget5__item">
-                                            <div class="kt-widget5__content">
-                                                <div class="kt-widget5__pic">
-                                                    <img class="kt-widget7__img" src="assets/media/products/product27.jpg"
-                                                        alt="">
-                                                </div>
-                                                <div class="kt-widget5__section">
-                                                    <a href="#" class="kt-widget5__title">
-                                                        Great Logo Designn
-                                                    </a>
-                                                    <p class="kt-widget5__desc">
-                                                        Metronic admin themes.
-                                                    </p>
-                                                    <div class="kt-widget5__info">
-                                                        <span>Author:</span>
-                                                        <span class="kt-font-info">Keenthemes</span>
-                                                        <span>Released:</span>
-                                                        <span class="kt-font-info">23.08.17</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="kt-widget5__content">
-                                                <div class="kt-widget5__stats">
-                                                    <span class="kt-widget5__number">210,054</span>
-                                                    <span class="kt-widget5__sales">Accept Order</span>
-                                                </div>
-                                                <div class="kt-widget5__stats">
-                                                    <span class="kt-widget5__number">1103</span>
-                                                    <span class="kt-widget5__votes">Pending Order</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--end:: Widgets/Best Sellers-->
-            </div> --}}
-
-        </div>
-
-        <!--End::Row-->
-
         <!--End::Dashboard 1-->
     </div>
 @endsection
