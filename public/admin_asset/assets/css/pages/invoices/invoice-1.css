@@ -28,7 +28,7 @@
         font-size: 2.7rem;
         margin-right: 10px;
         margin-top: 5px;
-        color: #fff;
+        color: #000;
         vertical-align: top; }
       .kt-invoice-1 .kt-invoice__head .kt-invoice__brand .kt-invoice__logo {
         display: -webkit-box;
@@ -52,7 +52,7 @@
           flex-direction: column;
           text-align: right;
           padding: 1rem 0 1rem 0;
-          color: rgba(255, 255, 255, 0.7); }
+          color: rgba(0, 0, 0, 0.7); }
     .kt-invoice-1 .kt-invoice__head .kt-invoice__items {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -73,7 +73,7 @@
         -webkit-box-flex: 1;
         -ms-flex: 1;
         flex: 1;
-        color: #fff;
+        color: #000;
         margin-right: 10px;
         margin-top: 20px; }
         .kt-invoice-1 .kt-invoice__head .kt-invoice__items .kt-invoice__item:last-child {
@@ -82,7 +82,7 @@
           font-weight: 500;
           padding-bottom: 0.5rem; }
         .kt-invoice-1 .kt-invoice__head .kt-invoice__items .kt-invoice__item .kt-invoice__text {
-          color: rgba(255, 255, 255, 0.7); }
+          color: rgba(8, 8, 8, 0.7); }
   .kt-invoice-1 .kt-invoice__body {
     padding: 3rem 0; }
     .kt-invoice-1 .kt-invoice__body table {
