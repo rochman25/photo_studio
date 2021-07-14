@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Hero;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class HeroController extends Controller
 {
@@ -14,7 +18,8 @@ class HeroController extends Controller
      */
     public function index()
     {
-        //
+        $heros = Hero::all();
+        return view('pages.admin.hero.index',compact('heros'));
     }
 
     /**
@@ -24,7 +29,7 @@ class HeroController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.hero.create');
     }
 
     /**
@@ -35,7 +40,32 @@ class HeroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'file' => 'required',
+            'order' => 'required'
+        ]);
+        try {
+            DB::beginTransaction();
+            
+            $filename = uniqid().".".$request->file("file")->extension();
+            $path = $request->file("file")->storeAs('public/heros',$filename);
+            $url = Storage::url($path);
+
+            $dataHero = [
+                "file_name" => $filename,
+                "file_path" => $path,
+                "file_url" => $url,
+                "order" => $request->input('order')
+            ];
+
+            Hero::create($dataHero);
+            
+            DB::commit();
+            return redirect()->route('hero.index')->with('success','Hero berhasil disimpan');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->withErrors(['error' => $th->getMessage()]);
+        }
     }
 
     /**
@@ -57,7 +87,8 @@ class HeroController extends Controller
      */
     public function edit($id)
     {
-        //
+        $hero = Hero::find($id);
+        return view('pages.admin.hero.edit',compact('hero'));
     }
 
     /**
@@ -69,7 +100,41 @@ class HeroController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'order' => 'required'
+        ]);
+        try {
+            DB::beginTransaction();
+            $hero = Hero::find($id);
+            $dataHero = [];
+            if($request->file){
+                $file = explode("/",$hero->file_path);
+                Storage::delete('heros/'.$file[array_key_last($file)]);
+
+                $filename = uniqid().".".$request->file("file")->extension();
+                $path = $request->file("file")->storeAs('public/heros',$filename);
+                $url = Storage::url($path);
+    
+                $dataHero = [
+                    "file_name" => $filename,
+                    "file_path" => $path,
+                    "file_url" => $url,
+                    "order" => $request->input('order')
+                ];   
+            }else{
+                $dataHero = [
+                    'order' => $request->input('order')
+                ];
+            }
+
+            $hero->update($dataHero);
+
+            DB::commit();
+            return redirect()->route('hero.index')->with('success','Hero berhasil disimpan');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->withErrors(['error' => $th->getMessage()]);
+        }
     }
 
     /**
@@ -80,6 +145,18 @@ class HeroController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            DB::beginTransaction();
+            $hero = Hero::where('id',$id)->first();
+            $file = explode("/",$hero->file_path);
+            Storage::delete('heros/'.$file[array_key_last($file)]);
+            $hero->delete();
+            DB::commit();
+            $success = true;         
+            return response()->json(['success'=>$success]);
+        }catch(Exception $e){
+            DB::rollBack();
+            return response()->json(['success' => false,'errors' => $e->getMessage()]);
+        }
     }
 }

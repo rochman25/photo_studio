@@ -171,7 +171,7 @@
                             </svg></span><span class="kt-menu__link-text">Personalisasi</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
                             <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
                                 <ul class="kt-menu__subnav">
-                                    <li class="kt-menu__item" aria-haspopup="true"><a href="#" class="kt-menu__link"><i class="kt-menu__link-icon flaticon2-cube-1"></i><span class="kt-menu__link-text">Banner</span></a>
+                                    <li class="kt-menu__item" aria-haspopup="true"><a href="{{ route('hero.index') }}" class="kt-menu__link"><i class="kt-menu__link-icon flaticon2-cube-1"></i><span class="kt-menu__link-text">Banner</span></a>
                                     </li>
                                     <li class="kt-menu__item" aria-haspopup="true"><a href="#" class="kt-menu__link"><i class="kt-menu__link-icon flaticon2-cube-1"></i><span class="kt-menu__link-text">Portfolio</span></a>
                                     </li>
