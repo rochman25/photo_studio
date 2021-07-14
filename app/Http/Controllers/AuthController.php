@@ -39,7 +39,13 @@ class AuthController extends Controller
 
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
-                return response()->json(["status" => true, "message" => route('view.home')]);
+                $user = Auth::user();
+                // dd($user->role->role);
+                if($user->role->role->name == "super_admin"){
+                    return response()->json(["status" => true, "message" => route('view.home')]);
+                }else{
+                    return response()->json(["status" => true, "message" => route('view.user.home')]);
+                }
             } else {
                 return response()->json([
                     "status" => false, "message" => "Mohon maaf username dan password tidak dapat kami kenali."

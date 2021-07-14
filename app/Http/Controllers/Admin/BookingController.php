@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -14,7 +16,15 @@ class BookingController extends Controller
      */
     public function index()
     {
-        return view('pages.admin.booking.index');
+        $user = Auth::user();
+        $bookings = [];
+        if($user->role->role->name != "super_admin"){
+            $bookings = Booking::where('user_id',$user->id)->get();
+        }else{
+            $bookings = Booking::all();
+        }
+        
+        return view('pages.admin.booking.index',compact('bookings'));
     }
 
     /**

@@ -44,10 +44,13 @@ use Illuminate\Support\Facades\Route;
     Route::get('/portfolio/{id}',[UserHomeController::class,'detail_portfolio'])->name('view.user.portfolio.detail');
     Route::get('/about_us',[UserHomeController::class,'about'])->name('view.user.about_us');
     Route::get('/contact_us',[UserHomeController::class,'contact'])->name('view.user.contact_us');
-    Route::get('/cart',[ShopController::class,'cart'])->name('view.user.cart');
 // });
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/cart',[ShopController::class,'cart'])->name('view.user.cart');
+    Route::get('/cart/{id}/remove',[ShopController::class,'removeCart'])->name('get.remove_from_cart');
+    Route::get('/cart/{id}/add',[ShopController::class,'addToCart'])->name('get.add_to_cart');
+    Route::post('/checkout',[ShopController::class,'checkout'])->name('post.checkout');
     Route::get('admin/home', [HomeController::class, 'index'])->name('view.home');
 
     //resource route
