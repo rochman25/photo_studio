@@ -34,17 +34,17 @@
                         <div class="row" data-aos="fade-up" data-aos-delay="200">
                             @forelse ($portfolios as $item)
                                 <div class="col-lg-12 col-md-12 portfolio-item filter-app">
-                                    <img src="{{ asset('img/portfolio_1.png') }}" class="img-fluid" alt="">
+                                    <img src="{{ asset($item->file_url) }}" class="img-fluid" alt="">
                                     <div class="portfolio-info">
-                                        <h4>App 1</h4>
-                                        <p>App</p>
+                                        <h4>{{ $item->nama }}</h4>
+                                        <p>{{ $item->caption }}</p>
                                         <a href="{{ public_path($item->file_url) }}" data-gall="portfolioGallery"
                                             class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
                                         <a href="{{ route('view.user.portfolio.detail', $item->id) }}"
                                             class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                                     </div>
                                 </div>
-                                {{ $paginate }}
+                                {{ $portfolios->links() }}
                             @empty
                                 <div class="col-lg-12 col-md-12 portfolio-item filter-app">
                                     <p class="section-description" style="text-align: center">{{ 'Portfolio Masih Kosong.' }}</p>

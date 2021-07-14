@@ -9,36 +9,20 @@
         </div> --}}
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    @foreach ($heros as $index => $item)
+                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}" class="active"></li>
+                    @endforeach
                 </ol>
                 <div class="carousel-inner">
-                    @forelse ($heros as $item)
-                        <div class="carousel-item">
-                            <img class="d-block w-100" style="height: 100vh" src="{{ public_path($item->file_url) }}"
+                    @forelse ($heros as $index => $item)
+                        <div class="carousel-item @if($index == 0) active @endif">
+                            <img class="d-block w-100" style="height: 100vh" src="{{ asset($item->file_url) }}"
                                 alt="First slide">
-                            {{-- <div class="carousel-caption d-none d-md-block">
-                            <h5>Slide label</h5>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia, dolorum rerum in
-                                laudantium
-                                labore error ex sint facere a iusto, nam minima quas vero aliquid, id tempora ipsam
-                                minus
-                                expedita?</p>
-                        </div> --}}
                         </div>
                     @empty
                         <div class="carousel-item active">
                             <img class="d-block w-100" style="height: 100vh" src="{{ asset('img/hero_1.png') }}"
                                 alt="First slide">
-                            {{-- <div class="carousel-caption d-none d-md-block">
-                                <h5>Slide label</h5>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia, dolorum rerum in
-                                    laudantium
-                                    labore error ex sint facere a iusto, nam minima quas vero aliquid, id tempora ipsam
-                                    minus
-                                    expedita?</p>
-                            </div> --}}
                         </div>
                     @endforelse
                 </div>
@@ -68,13 +52,13 @@
                 <div class="row" data-aos="fade-up" data-aos-delay="200">
                     @forelse ($portfolios as $item)
                         <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                            <img src="{{ asset('img/category_1.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset($item->file_url) }}" class="img-fluid" alt="">
                             <div class="portfolio-info">
-                                <h4>App 1</h4>
-                                <p>App</p>
-                                <a href="{{ asset('img/category_1.png') }}" data-gall="portfolioGallery"
+                                <h4>{{ $item->nama }}</h4>
+                                <p>{{ $item->caption }}</p>
+                                <a href="{{ asset($item->file_url) }}" data-gall="portfolioGallery"
                                     class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-                                <a href="portfolio-details.html" class="details-link" title="More Details"><i
+                                <a href="{{ route('view.user.portfolio.detail',$item->id) }}" class="details-link" title="More Details"><i
                                         class="bx bx-link"></i></a>
                             </div>
                         </div>
@@ -100,27 +84,6 @@
                         <p>
                             {{ $aboutUs }}
                         </p>
-
-                        {{-- <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-                            <div class="icon"><i class="fa fa-shopping-bag"></i></div>
-                            <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-                            <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero
-                                tempore, cum soluta nobis est eligendi</p>
-                        </div>
-
-                        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-                            <div class="icon"><i class="fa fa-photo"></i></div>
-                            <h4 class="title"><a href="">Magni Dolores</a></h4>
-                            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                                deserunt mollit anim id est laborum</p>
-                        </div>
-
-                        <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-                            <div class="icon"><i class="fa fa-bar-chart"></i></div>
-                            <h4 class="title"><a href="">Dolor Sitema</a></h4>
-                            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                                ex ea commodo consequat tarad limino ata</p>
-                        </div> --}}
 
                     </div>
 
