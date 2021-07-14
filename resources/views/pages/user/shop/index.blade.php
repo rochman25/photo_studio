@@ -79,7 +79,7 @@
                                             </p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="btn-group">
-                                                    <a href="{{ route('view.user.shop.detail', 'Produk-1') }}" type="button"
+                                                    <a href="{{ route('view.user.shop.detail', str_replace(" ","-",$item->nama)) }}" type="button"
                                                         class="btn btn-sm btn-outline-secondary">Pesan</a>
                                                 </div>
                                                 {{-- <small class="text-muted">9 mins</small> --}}
