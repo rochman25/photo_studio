@@ -70,6 +70,7 @@ Route::middleware(['auth'])->group(function () {
     //booking
     Route::get('admin/booking/{id}/upload_payment',[BookingController::class,'uploadPayment'])->name('booking.upload_payment');
     Route::post('admin/booking/{id}/upload_payment',[BookingController::class, 'postPayment'])->name('booking.upload_payment.post');
+    Route::post('admin/booking/{id}/cancel', [BookingController::class, 'cancelOrder'])->name('booking.order.cancel');
     Route::resource('admin/booking', BookingController::class);
 
     //heros

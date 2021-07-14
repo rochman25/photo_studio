@@ -93,7 +93,7 @@
                                                     <button type="button"
                                                         data-url="{{ route('produk.destroy', $item->id) }}"
                                                         class="btn btn-sm btn-danger btn-hapus"><i class="flaticon2-trash"></i>
-                                                        </a>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @empty

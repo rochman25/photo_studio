@@ -69,11 +69,18 @@
                                             <tr>
                                                 <th scope="row">{{ $no }}</th>
                                                 <td>{{ $item->user->name }}</td>
-                                                <td>{!! "Tanggal: ".\Carbon\Carbon::parse($item->tanggal_booking )->format('d-m-Y')."<br/> Pukul : ".$item->waktu_booking !!}</td>
+                                                <td>{!! 'Tanggal: ' . \Carbon\Carbon::parse($item->tanggal_booking)->format('d-m-Y') . '<br/> Pukul : ' . $item->waktu_booking !!}</td>
                                                 <td>{{ $item->status }}</td>
                                                 <td>
-                                                    <a href="{{ route('booking.show',$item->id) }}" class="btn btn-sm btn-info"><i class="fa fa-info"></i></a>
-                                                    <a href="" class="btn btn-sm btn-danger"><i class="fa fa-window-close"></i></a>
+                                                    <a href="{{ route('booking.show', $item->id) }}"
+                                                        class="btn btn-sm btn-info"><i class="fa fa-info"></i></a>
+                                                    @if ($item->status != 'cancel')
+                                                        <button type="button"
+                                                            data-url="{{ route('booking.order.cancel', $item->id) }}"
+                                                            class="btn btn-sm btn-danger btn-hapus"><i
+                                                                class="fa fa-window-close"></i>
+                                                        </button>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @empty
@@ -95,3 +102,46 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.btn-hapus').click(function() {
+                // alert("Hapus fired.")
+                const url = $(this).data('url');
+                const idBtn = $(this).data('id');
+                swal.fire({
+                    title: "Konfirmasi",
+                    text: "Apakah anda yakin ingin membatalkan Order ini ?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya',
+                    cancelButtonText: 'Tidak',
+                    reverseButtons: true,
+                }).then(function(result) {
+                    if (result.value) {
+                        $.ajax({
+                            url: url,
+                            type: "POST",
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                                id: idBtn
+                            },
+                            success: function(response) {
+                                console.log(response)
+                                if (response.success) {
+                                    swal.fire("Sukses!",
+                                        "Data Order berhasil dibatalkan", "success");
+                                    setTimeout(location.reload.bind(location), 1000);
+                                } else {
+                                    swal("Error", "Maaf terjadi kesalahan", "error");
+                                }
+                            }
+                        });
+                    } else {
+                        swal.close();
+                    }
+                });
+            });
+        });
+    </script>
+@endpush
