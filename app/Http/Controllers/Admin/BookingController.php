@@ -7,6 +7,8 @@ use App\Models\Booking;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class BookingController extends Controller
 {
@@ -100,4 +102,31 @@ class BookingController extends Controller
     {
         //
     }
+
+    public function uploadPayment($id){
+        $booking = Booking::find($id);
+        return view('pages.admin.booking.upload_payment',compact('booking'));
+    }
+
+    public function postPayment(Request $request,$id){
+        try {
+            $request->validate([
+                'file' => 'required'
+            ]);
+            DB::beginTransaction();
+            $booking = Booking::find($id);
+            $filename = str_replace(" ","_",$booking->id).".".$request->file("file")->extension();
+            $path = $request->file("file")->storeAs('public/payment_confirmations',$filename);
+            $url = Storage::url($path);
+            $booking->bukti_transfer = $url;
+            $booking->is_pay = true;
+            $booking->save();
+            DB::commit();
+            return redirect()->route('booking.show',$id)->with('success','Bukti Pembayaran berhasil diupload');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->withErrors(['error' => $th->getMessage()]);
+        }
+    }
+
 }

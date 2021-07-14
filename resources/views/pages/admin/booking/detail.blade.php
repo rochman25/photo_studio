@@ -82,8 +82,10 @@
                                         <span clss="kt-invoice__text">
                                             @if ($booking->is_pay)
                                                 <h3 class="kt-invoice__price">Sudah Dibayar</h3>
+                                                <img src="{{ asset($booking->bukti_transfer) }}" width="200px" height="300px" style="margin-top: 10px" alt="bukti pembayaran">
                                             @else
                                                 <h3 class="kt-invoice__price">Belum Dibayar</h3>
+                                                <a href="{{ route('booking.upload_payment',$booking->id) }}" class="btn btn-info btn-sm">Upload Bukti Pembayaran</a>
                                             @endif
                                         </span>
                                     </div>
