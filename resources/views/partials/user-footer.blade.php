@@ -33,7 +33,9 @@
             <h5 class="text-uppercase">{{ $personalisasi[0]['P001']['value'] }}</h5>
   
             <p>
-              {{ $personalisasi[0]['P004']['value'] }}
+              {{ $personalisasi[0]['P004']['value'] }} <br />
+              {{ $personalisasi[0]['P006']['value'] }} <br />           
+              {{ $personalisasi[0]['P005']['value'] }}            
             </p>
           </div>
           <!--Grid column-->
@@ -83,8 +85,8 @@
   
       <!-- Copyright -->
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2020 Copyright:
-        <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        © 2021 Copyright
+        {{-- <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a> --}}
       </div>
       <!-- Copyright -->
     </footer>

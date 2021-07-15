@@ -73,86 +73,98 @@
                                                 <td>{{ $item->status }}</td>
                                                 <td>
                                                     <a href="{{ route('booking.show', $item->id) }}"
-                                                        class="btn btn-sm btn-info"><i class="fa fa-info"></i></a>
-                                                    @if ($item->status != 'acc')
-                                                        <button type="button"
-                                                            data-url="{{ route('booking.order.accept', $item->id) }}"
-                                                            data-status="Menerima"
-                                                            class="btn btn-sm btn-success btn-hapus"><i
-                                                                class="fa fa-check"></i>
-                                                        </button>
-                                                    @endif
+                                                        class="btn btn-sm btn-info"><i class="fa fa-info"></i> Detail</a>
+                                                    @if (Auth::user()->role->role->name == 'super_admin')
+                                                        @if ($item->status != 'acc')
+                                                            <button type="button"
+                                                                data-url="{{ route('booking.order.accept', $item->id) }}"
+                                                                data-status="Menerima"
+                                                                class="btn btn-sm btn-success btn-hapus"><i
+                                                                    class="fa fa-check"></i>Terima
+                                                            </button>
+                                                        @endif
 
-                                                    @if ($item->status != 'cancel')
-                                                        <button type="button"
-                                                            data-url="{{ route('booking.order.cancel', $item->id) }}"
-                                                            data-status="Membatalkan"
-                                                            class="btn btn-sm btn-danger btn-hapus"><i
-                                                                class="fa fa-window-close"></i>
-                                                        </button>
+                                                        @if ($item->status != 'cancel')
+                                                            <button type="button"
+                                                                data-url="{{ route('booking.order.cancel', $item->id) }}"
+                                                                data-status="Membatalkan"
+                                                                class="btn btn-sm btn-danger btn-hapus"><i
+                                                                    class="fa fa-window-close"></i> Batal
+                                                            </button>
+                                                        @endif
+
+                                                    @else
+                                                        @if ($item->status != 'cancel' && $item->status == 'pending')
+                                                            <button type="button"
+                                                                data-url="{{ route('booking.order.cancel', $item->id) }}"
+                                                                data-status="Membatalkan"
+                                                                class="btn btn-sm btn-danger btn-hapus"><i
+                                                                    class="fa fa-window-close"></i> Batal
+                                                            </button>
+                                                        @endif
                                                     @endif
                                                 </td>
                                             </tr>
-                                        @empty
+                                            @empty
 
-                                        @endforelse
-                                    </tbody>
-                                </table>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
+
+                            <!--end::Section-->
                         </div>
 
-                        <!--end::Section-->
+                        <!--end::Form-->
                     </div>
 
-                    <!--end::Form-->
+                    <!--end::Portlet-->
                 </div>
-
-                <!--end::Portlet-->
             </div>
         </div>
-    </div>
-@endsection
-@push('scripts')
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('.btn-hapus').click(function() {
-                // alert("Hapus fired.")
-                const url = $(this).data('url');
-                const idBtn = $(this).data('id');
-                const status = $(this).data('status');
-                swal.fire({
-                    title: "Konfirmasi",
-                    text: "Apakah anda yakin ingin " + status + " Order ini ?",
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Ya',
-                    cancelButtonText: 'Tidak',
-                    reverseButtons: true,
-                }).then(function(result) {
-                    if (result.value) {
-                        $.ajax({
-                            url: url,
-                            type: "POST",
-                            data: {
-                                _token: "{{ csrf_token() }}",
-                                id: idBtn
-                            },
-                            success: function(response) {
-                                console.log(response)
-                                if (response.success) {
-                                    swal.fire("Sukses!",
-                                        "Data Order berhasil diubah", "success");
-                                    setTimeout(location.reload.bind(location), 1000);
-                                } else {
-                                    swal("Error", "Maaf terjadi kesalahan", "error");
+    @endsection
+    @push('scripts')
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.btn-hapus').click(function() {
+                    // alert("Hapus fired.")
+                    const url = $(this).data('url');
+                    const idBtn = $(this).data('id');
+                    const status = $(this).data('status');
+                    swal.fire({
+                        title: "Konfirmasi",
+                        text: "Apakah anda yakin ingin " + status + " Order ini ?",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya',
+                        cancelButtonText: 'Tidak',
+                        reverseButtons: true,
+                    }).then(function(result) {
+                        if (result.value) {
+                            $.ajax({
+                                url: url,
+                                type: "POST",
+                                data: {
+                                    _token: "{{ csrf_token() }}",
+                                    id: idBtn
+                                },
+                                success: function(response) {
+                                    console.log(response)
+                                    if (response.success) {
+                                        swal.fire("Sukses!",
+                                            "Data Order berhasil diubah", "success");
+                                        setTimeout(location.reload.bind(location), 1000);
+                                    } else {
+                                        swal("Error", "Maaf terjadi kesalahan", "error");
+                                    }
                                 }
-                            }
-                        });
-                    } else {
-                        swal.close();
-                    }
+                            });
+                        } else {
+                            swal.close();
+                        }
+                    });
                 });
             });
-        });
-    </script>
-@endpush
+        </script>
+    @endpush
