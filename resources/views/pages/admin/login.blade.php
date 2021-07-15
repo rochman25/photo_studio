@@ -15,7 +15,7 @@
                             <div class="kt-login__body">
                                 <div class="kt-login__logo">
                                     <a href="#">
-                                        <img src="{{ asset('admin_asset/assets/media/company-logos/logo-2.png') }}">
+                                        <img src="{{ asset('user_assets/img/logo.png') }}" width="100px">
                                     </a>
                                 </div>
                                 <div class="kt-login__signin">
@@ -123,8 +123,8 @@
                         <div class="kt-login__block">
                             <h3 class="kt-login__title">Join Our Community</h3>
                             <div class="kt-login__desc">
-                                Lorem ipsum dolor sit amet, coectetuer adipiscing
-                                <br>elit sed diam nonummy et nibh euismod
+                                {{-- Lorem ipsum dolor sit amet, coectetuer adipiscing
+                                <br>elit sed diam nonummy et nibh euismod --}}
                             </div>
                         </div>
                     </div>

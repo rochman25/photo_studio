@@ -3,8 +3,9 @@
     <!-- begin:: Aside -->
     <div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
         <div class="kt-aside__brand-logo">
-            <a href="{{ route('view.user.home') }}">
-                <img alt="Logo" src="{{ asset('admin_asset/assets/media/logos/logo-light.png') }}" />
+            <a href="{{ route('view.user.home') }}" style="color: white">
+                {{ strtoupper($personalisasi[0]['P001']['value']) }}
+                {{-- <img alt="Logo" src="{{ asset('admin_asset/assets/media/logos/logo-light.png') }}" /> --}}
             </a>
         </div>
         <div class="kt-aside__brand-tools">
