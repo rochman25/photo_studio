@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\User\HomeController as UserHomeController;
 use App\Http\Controllers\User\ShopController;
 use Illuminate\Support\Facades\Auth;
@@ -80,4 +81,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/portfolio', PortfolioController::class);
     
     Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+
+    Route::get('schedules',[ScheduleController::class,'index'])->name('schedule.index');
+    Route::get('schedules/json',[ScheduleController::class,'getJsonSchedule'])->name('schedules.json');
 });
