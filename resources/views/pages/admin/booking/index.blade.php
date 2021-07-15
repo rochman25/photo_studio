@@ -74,9 +74,19 @@
                                                 <td>
                                                     <a href="{{ route('booking.show', $item->id) }}"
                                                         class="btn btn-sm btn-info"><i class="fa fa-info"></i></a>
+                                                    @if ($item->status != 'acc')
+                                                        <button type="button"
+                                                            data-url="{{ route('booking.order.accept', $item->id) }}"
+                                                            data-status="Menerima"
+                                                            class="btn btn-sm btn-success btn-hapus"><i
+                                                                class="fa fa-check"></i>
+                                                        </button>
+                                                    @endif
+
                                                     @if ($item->status != 'cancel')
                                                         <button type="button"
                                                             data-url="{{ route('booking.order.cancel', $item->id) }}"
+                                                            data-status="Membatalkan"
                                                             class="btn btn-sm btn-danger btn-hapus"><i
                                                                 class="fa fa-window-close"></i>
                                                         </button>
@@ -109,9 +119,10 @@
                 // alert("Hapus fired.")
                 const url = $(this).data('url');
                 const idBtn = $(this).data('id');
+                const status = $(this).data('status');
                 swal.fire({
                     title: "Konfirmasi",
-                    text: "Apakah anda yakin ingin membatalkan Order ini ?",
+                    text: "Apakah anda yakin ingin " + status + " Order ini ?",
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonText: 'Ya',
@@ -130,7 +141,7 @@
                                 console.log(response)
                                 if (response.success) {
                                     swal.fire("Sukses!",
-                                        "Data Order berhasil dibatalkan", "success");
+                                        "Data Order berhasil diubah", "success");
                                     setTimeout(location.reload.bind(location), 1000);
                                 } else {
                                     swal("Error", "Maaf terjadi kesalahan", "error");

@@ -144,4 +144,19 @@ class BookingController extends Controller
         }
     }
 
+    public function acceptOrder(Request $request, $id){
+        try {
+            DB::beginTransaction();
+            $order = Booking::where('id',$id)->update([
+                'status' => 'acc'
+            ]);
+            DB::commit();
+            $success = $order;
+            return response()->json(['success'=>$success]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['success' => false,'errors' => $th->getCode()]);
+        }
+    }
+
 }
