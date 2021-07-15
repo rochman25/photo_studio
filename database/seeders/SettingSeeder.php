@@ -56,6 +56,27 @@ class SettingSeeder extends Seeder
             'type' => 'text',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
+        ],[
+            'kode' => "P007",
+            'label' => 'Facebook links',
+            'value' => 'https://facebook.com',
+            'type' => 'text',
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
+        ],[
+            'kode' => "P008",
+            'label' => 'Instagram links',
+            'value' => 'https://facebook.com',
+            'type' => 'text',
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
+        ],[
+            'kode' => "P009",
+            'label' => 'Twitter links',
+            'value' => 'https://twitter.com',
+            'type' => 'text',
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
         ]]);
     }
 }

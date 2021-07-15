@@ -19,7 +19,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <head>
     <base href="../../../">
     <meta charset="utf-8" />
-    <title>{{ config('app.name','e-studios') }}</title>
+    <title>{{ $personalisasi[0]['P001']['value'] }}</title>
     <meta name="description" content="Login page example">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -47,7 +47,8 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="{{ asset('admin_asset/assets/css/skins/aside/dark.css') }}" rel="stylesheet" type="text/css" />
 
     <!--end::Layout Skins -->
-    <link rel="shortcut icon" href="{{ asset('admin_asset/assets/media/logos/favicon.ico') }}" />
+    {{-- <link rel="shortcut icon" href="{{ asset('admin_asset/assets/media/logos/favicon.ico') }}" /> --}}
+    <link href="{{ asset('user_assets/img/favicon.png') }}" rel="icon">
 
     @stack('styles')
 </head>
