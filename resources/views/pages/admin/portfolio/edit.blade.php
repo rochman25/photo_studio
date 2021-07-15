@@ -38,6 +38,7 @@
                     <form class="kt-form" action="{{ route('portfolio.update',$portfolio->id) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
+                        @method("PUT")
                         <div class="kt-portlet__body">
                             <div class="form-group">
                                 <label>Nama Portfolio</label>
@@ -79,6 +80,22 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <div class="row" style="margin-top:10px">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <label>Portfolio Details Images (Multiple Upload Image)</label>
+                                        <input type="file" name="images[]" multiple class="form-control" accept="image/*">
+                                        @if ($errors->has('files'))
+                                            @foreach ($errors->get('files') as $error)
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $error }}</strong>
+                                                </span>
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            *note : jika anda mengupload lagi portfolio details maka data portfolio details sebelumnya akan dihapus dan diganti dengan data yang baru anda upload.
                         </div>
                         <div class="kt-portlet__foot">
                             <div class="kt-form__actions">

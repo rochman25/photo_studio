@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Portfolio;
+use App\Models\PortfolioImage;
 use App\Repositories\PortFolioImageRepository;
 use App\Repositories\PortfolioRepository;
 use Exception;
@@ -18,7 +19,7 @@ class PortfolioController extends Controller
     public function __construct(PortfolioRepository $portfolioRepository, PortFolioImageRepository $portfolioImageRepository)
     {
         $this->portfolioRepository = $portfolioRepository;
-        $this->portfolioImageRepository = $portfolioImageRepository;        
+        $this->portfolioImageRepository = $portfolioImageRepository;
     }
 
     /**
@@ -29,7 +30,7 @@ class PortfolioController extends Controller
     public function index()
     {
         $portfolios = $this->portfolioRepository->getAll();
-        return view('pages.admin.portfolio.index',compact('portfolios'));
+        return view('pages.admin.portfolio.index', compact('portfolios'));
     }
 
     /**
@@ -57,8 +58,8 @@ class PortfolioController extends Controller
         ]);
         try {
             DB::beginTransaction();
-            $filename = uniqid().".".$request->file("file")->extension();
-            $path = $request->file("file")->storeAs('public/portfolios',$filename);
+            $filename = uniqid() . "." . $request->file("file")->extension();
+            $path = $request->file("file")->storeAs('public/portfolios', $filename);
             $url = Storage::url($path);
 
             $dataPortfolio = [
@@ -70,10 +71,26 @@ class PortfolioController extends Controller
                 "order" => $request->input('order')
             ];
 
-            Portfolio::create($dataPortfolio);
+            $portfolio = Portfolio::create($dataPortfolio);
+            if ($request->hasfile('images')) {
+                $images = $request->file('images');
 
+                foreach ($images as $index => $item) {
+                    $filename = uniqid() . "." . $item->extension();
+                    $path = $item->storeAs('public/portfolios/images', $filename);
+                    $url = Storage::url($path);
+
+                    PortfolioImage::create([
+                        "portfolio_id" => $portfolio->id,
+                        "file_name" => $filename,
+                        "file_path" => $path,
+                        "file_url" => $url,
+                        "order" => $index
+                    ]);
+                }
+            }
             DB::commit();
-            return redirect()->route('portfolio.index')->with('success','Portfolio berhasil disimpan');
+            return redirect()->route('portfolio.index')->with('success', 'Portfolio berhasil disimpan');
         } catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->back()->withErrors(['error' => $th->getMessage()]);
@@ -100,7 +117,7 @@ class PortfolioController extends Controller
     public function edit($id)
     {
         $portfolio = $this->portfolioRepository->getById($id);
-        return view('pages.admin.portfolio.edit',compact('portfolio'));
+        return view('pages.admin.portfolio.edit', compact('portfolio'));
     }
 
     /**
@@ -113,7 +130,7 @@ class PortfolioController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'file' => 'required',
+            // 'file' => 'required',
             'nama' => 'required',
             'order' => 'required'
         ]);
@@ -121,14 +138,14 @@ class PortfolioController extends Controller
             DB::beginTransaction();
             $portfolio = $this->portfolioRepository->getById($id);
             $dataPortfolio = [];
-            if($request->file){
-                $file = explode("/",$portfolio->file_path);
-                Storage::delete('portfolios/'.$file[array_key_last($file)]);
+            if ($request->file) {
+                $file = explode("/", $portfolio->file_path);
+                Storage::delete('public/portfolios/' . $file[array_key_last($file)]);
 
-                $filename = uniqid().".".$request->file("file")->extension();
-                $path = $request->file("file")->storeAs('public/heros',$filename);
+                $filename = uniqid() . "." . $request->file("file")->extension();
+                $path = $request->file("file")->storeAs('public/portfolios', $filename);
                 $url = Storage::url($path);
-    
+
                 $dataPortfolio = [
                     "nama" => $request->input('nama'),
                     "caption" => $request->input('caption'),
@@ -136,8 +153,8 @@ class PortfolioController extends Controller
                     "file_path" => $path,
                     "file_url" => $url,
                     "order" => $request->input('order')
-                ];   
-            }else{
+                ];
+            } else {
                 $dataPortfolio = [
                     "nama" => $request->input('nama'),
                     "caption" => $request->input('caption'),
@@ -146,8 +163,29 @@ class PortfolioController extends Controller
             }
 
             $portfolio->update($dataPortfolio);
+            if ($request->hasfile('images')) {
+                $images = $request->file('images');
+
+                foreach ($images as $index => $item) {
+                    $filename = uniqid() . "." . $item->extension();
+                    $path = $item->storeAs('public/portfolios/images', $filename);
+                    $url = Storage::url($path);
+                    foreach($portfolio->images as $index => $item){
+                        $file = explode("/", $item->file_url);
+                        Storage::delete('public/portfolios/images/' . $file[array_key_last($file)]);
+                    }
+                    PortfolioImage::where('portfolio_id',$id)->delete();
+                    PortfolioImage::create([
+                        "portfolio_id" => $id,
+                        "file_name" => $filename,
+                        "file_path" => $path,
+                        "file_url" => $url,
+                        "order" => $index
+                    ]);
+                }
+            }
             DB::commit();
-            return redirect()->route('portfolio.index')->with('success','Portfolio berhasil disimpan');
+            return redirect()->route('portfolio.index')->with('success', 'Portfolio berhasil disimpan');
         } catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->back()->withErrors(['error' => $th->getMessage()]);
@@ -162,18 +200,23 @@ class PortfolioController extends Controller
      */
     public function destroy($id)
     {
-        try{
+        try {
             DB::beginTransaction();
             $portfolio = $this->portfolioRepository->getById($id);
-            $file = explode("/",$portfolio->file_path);
-            Storage::delete('portfolios/'.$file[array_key_last($file)]);
+            $file = explode("/", $portfolio->file_url);
+            Storage::delete('public/portfolios/' . $file[array_key_last($file)]);
+            foreach($portfolio->images as $index => $item){
+                $file = explode("/", $item->file_url);
+                Storage::delete('public/portfolios/images/' . $file[array_key_last($file)]);
+            }
+            $portfolio->images()->delete();
             $portfolio->delete();
             DB::commit();
-            $success = true;         
-            return response()->json(['success'=>$success]);
-        }catch(Exception $e){
+            $success = true;
+            return response()->json(['success' => $success]);
+        } catch (Exception $e) {
             DB::rollBack();
-            return response()->json(['success' => false,'errors' => $e->getMessage()]);
+            return response()->json(['success' => false, 'errors' => $e->getMessage()]);
         }
     }
 }

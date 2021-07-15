@@ -51,8 +51,8 @@
                             <div class="form-group">
                                 <label>Caption Portfolio</label>
                                 <textarea name="caption" class="form-control @error('caption') is-invalid @enderror"
-                                    aria-describedby="emailHelp" placeholder="Masukkan Caption Portfolio"
-                                    >{{ old('caption') }}</textarea>
+                                    aria-describedby="emailHelp"
+                                    placeholder="Masukkan Caption Portfolio">{{ old('caption') }}</textarea>
                                 @error('caption')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -69,13 +69,28 @@
                             <div class="form-group">
                                 <div class="row" style="margin-top:10px">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <label>Portfolio</label>
+                                        <label>Portfolio Thumbnail</label>
                                         <input type="file" name="file"
                                             class="form-control @error('file') is-invalid @enderror"
                                             value="{{ old('file') }}">
                                         @error('file')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row" style="margin-top:10px">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <label>Portfolio Details Images (Multiple Upload Image)</label>
+                                        <input type="file" name="images[]" multiple class="form-control" accept="image/*">
+                                        @if ($errors->has('files'))
+                                            @foreach ($errors->get('files') as $error)
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $error }}</strong>
+                                                </span>
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </div>
                             </div>

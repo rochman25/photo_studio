@@ -131,7 +131,7 @@ class ProdukController extends Controller
             $file = explode("/",$produk->thumbnail);
 
             if($request->thumbnail){
-                Storage::delete('thumbnails/'.$file[array_key_last($file)]);
+                Storage::delete('public/thumbnails/'.$file[array_key_last($file)]);
                 $filename = str_replace(" ","_",$request->nama).".".$request->file("thumbnail")->extension();
                 $path = $request->file("thumbnail")->storeAs('thumbnails',$filename);
                 $url = Storage::url($path);
@@ -172,7 +172,7 @@ class ProdukController extends Controller
             DB::beginTransaction();
             $produk = Product::where('id',$id)->first();
             $file = explode("/",$produk->thumbnail);
-            Storage::delete('thumbnails/'.$file[array_key_last($file)]);
+            Storage::delete('public/thumbnails/'.$file[array_key_last($file)]);
             $produk->delete();
             DB::commit();
             $success = true;         
