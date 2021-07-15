@@ -109,7 +109,7 @@ class HeroController extends Controller
             $dataHero = [];
             if($request->file){
                 $file = explode("/",$hero->file_path);
-                Storage::delete('heros/'.$file[array_key_last($file)]);
+                Storage::delete('public/heros/'.$file[array_key_last($file)]);
 
                 $filename = uniqid().".".$request->file("file")->extension();
                 $path = $request->file("file")->storeAs('public/heros',$filename);
@@ -149,7 +149,7 @@ class HeroController extends Controller
             DB::beginTransaction();
             $hero = Hero::where('id',$id)->first();
             $file = explode("/",$hero->file_path);
-            Storage::delete('heros/'.$file[array_key_last($file)]);
+            Storage::delete('public/heros/'.$file[array_key_last($file)]);
             $hero->delete();
             DB::commit();
             $success = true;         
