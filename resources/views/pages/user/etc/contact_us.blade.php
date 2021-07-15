@@ -29,9 +29,12 @@
                     </div>
 
                     <!-- Uncomment below if you wan to use dynamic maps -->
-                    <iframe
+                    {{-- <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22864.11283411948!2d-73.96468908098944!3d40.630720240038435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sbg!4v1540447494452"
-                        width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe> --}}
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.388805608842!2d109.2323427147759!3d-7.422151394645084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e655e61f643aec9%3A0x9f8d5e19db9668d0!2sVibesroom%20foto%20studio%20purwokerto!5e0!3m2!1sen!2sid!4v1626324335081!5m2!1sen!2sid"
+                        width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
 
                     <div class=" mt-5">
                         <div class="row justify-content-center">
@@ -56,11 +59,9 @@
                                 </div>
 
                                 <div class="social-links">
-                                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                                    <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-                                    <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-                                    <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                                    <a href="{{ $twitter }}" class="twitter"><i class="fa fa-twitter"></i></a>
+                                    <a href="{{ $facebook }}" class="facebook"><i class="fa fa-facebook"></i></a>
+                                    <a href="{{ $instagram }}" class="instagram"><i class="fa fa-instagram"></i></a>
                                 </div>
 
                             </div>

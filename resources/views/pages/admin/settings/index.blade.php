@@ -12,7 +12,7 @@
                 <div class="kt-subheader__wrapper">
                     <div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="Tambah Data"
                         data-placement="left">
-                        <a href="{{ route('setting.create') }}" class="btn btn-icon" aria-haspopup="true"
+                        {{-- <a href="{{ route('setting.create') }}" class="btn btn-icon" aria-haspopup="true"
                             aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                 height="24px" viewBox="0 0 24 24" version="1.1"
@@ -29,7 +29,7 @@
                             </svg>
 
                             <!--<i class="flaticon2-plus"></i>-->
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
             </div>

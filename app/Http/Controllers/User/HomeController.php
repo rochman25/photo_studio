@@ -118,6 +118,9 @@ class HomeController extends Controller
         $email = "";
         $phone = "";
         $address = "";
+        $facebook = "";
+        $twitter = "";
+        $instagram = "";
         foreach($settings as $index => $item){
             if($item->kode == "P004"){
                 $address = $item->value;
@@ -125,9 +128,15 @@ class HomeController extends Controller
                 $email = $item->value;
             }else if($item->kode == "P006"){
                 $phone = $item->value;
+            }else if($item->kode == "P007"){
+                $facebook = $item->value;
+            }else if($item->kode == "P008"){
+                $instagram = $item->value;
+            }else if($item->kode == "P009"){
+                $twitter = $item->value;
             }
         }
-        return view('pages.user.etc.contact_us',compact('email','phone','address'));
+        return view('pages.user.etc.contact_us',compact('email','phone','address','facebook','instagram','twitter'));
     }
 
 }
