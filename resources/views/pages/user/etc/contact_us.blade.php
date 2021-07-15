@@ -23,8 +23,8 @@
                     <div class="">
                         <div class="section-header">
                             <h3 class="section-title">Contact</h3>
-                            <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                                accusantium doloremque</p>
+                            {{-- <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                                accusantium doloremque</p> --}}
                         </div>
                     </div>
 
