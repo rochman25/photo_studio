@@ -84,14 +84,14 @@
                                             <tr>
                                                 <td>{{ ++$index }}</td>
                                                 <td>{{ $item->nama }}</td>
-                                                <td><img src="{{ asset($item->thumbnail) }}" width="100px"></td>
+                                                <td><img src="{{ asset($item->thumbnail) }}" width="100px" loading="lazy"></td>
                                                 <td>{{ $item->category->nama }}</td>
                                                 <td>{{ $item->harga }}</td>
                                                 <td>{{ $item->updated_at }}</td>
                                                 <td>
                                                     <a href="{{ route('produk.edit',$item->id) }}" class="btn btn-sm btn-success"><i class="flaticon-edit"></i></a>
                                                     <button type="button"
-                                                        data-url="{{ route('produk.destroy', $item->id) }}"
+                                                        data-url="{{ route('produk.destroy', $item->id,['param'=>'delete']) }}"
                                                         class="btn btn-sm btn-danger btn-hapus"><i class="flaticon2-trash"></i>
                                                     </button>
                                                 </td>
@@ -136,7 +136,7 @@
                     if (result.value) {
                         $.ajax({
                             url: url,
-                            type: "DELETE",
+                            type: "POST",
                             data: {
                                 _token: "{{ csrf_token() }}",
                                 id: idBtn

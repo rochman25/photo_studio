@@ -26,6 +26,7 @@ class ShopController extends Controller
     public function index($slug = null)
     {
         $serviceKategori = new Kategori();
+        $products = [];
         if ($slug !== null) {
             $products = $this->productRepository->getLastestProdukByKategori($slug);
         } else {

@@ -73,6 +73,7 @@ class ProdukController extends Controller
                 "harga" => $request->harga,
                 "thumbnail" => $url,
                 "diskon" => $request->diskon,
+                "status" => "active",
             ]);
             // dd($path);
             DB::commit();
@@ -149,7 +150,8 @@ class ProdukController extends Controller
                 "category_id" => $request->category_id,
                 "harga" => $request->harga,
                 "diskon" => $request->diskon,
-                "thumbnail" => $url
+                "thumbnail" => $url,
+                "status" => "active",
             ]);
             DB::commit();
             return redirect()->route('produk.index')->with('success',"Data berhasil diperbarui");

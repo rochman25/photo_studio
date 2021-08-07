@@ -34,7 +34,7 @@
                         <div class="row" data-aos="fade-up" data-aos-delay="200">
                             @forelse ($portfolios as $item)
                                 <div class="col-lg-12 col-md-12 portfolio-item filter-app">
-                                    <img src="{{ asset($item->file_url) }}" class="img-fluid" alt="">
+                                    <img src="{{ asset($item->file_url) }}" class="img-fluid" alt="" loading="lazy">
                                     <div class="portfolio-info">
                                         <h4>{{ $item->nama }}</h4>
                                         <p>{{ $item->caption }}</p>

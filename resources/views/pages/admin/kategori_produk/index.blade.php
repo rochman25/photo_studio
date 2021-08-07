@@ -72,7 +72,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Nama</th>
-                                            <th>Deskripsi</th>
+                                            <!-- <th>Deskripsi</th> -->
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -81,12 +81,12 @@
                                             <tr>
                                                 <th scope="row">{{ ++$index }}</th>
                                                 <td>{{ $item->nama }}</td>
-                                                <td>{{ $item->deskripsi }}</td>
+                                                <!-- <td>{{ $item->deskripsi }}</td> -->
                                                 <td>
                                                     <a href="{{ route('kategori_produk.edit', $item->id) }}"
                                                         class="btn btn-sm btn-success"><i class="flaticon-edit"></i> </a>
                                                     <button type="button"
-                                                        data-url="{{ route('kategori_produk.destroy', $item->id) }}"
+                                                        data-url="{{ route('kategori_produk.destroy', [$item->id,"param" => "empty"]) }}"
                                                         class="btn btn-sm btn-danger btn-hapus"><i class="flaticon2-trash"></i>
                                                         </a>
                                                 </td>
@@ -132,7 +132,8 @@
                     if (result.value) {
                         $.ajax({
                             url: url,
-                            type: "DELETE",
+                            type: "POST",
+                            crossDomain: true,
                             data: {
                                 _token: "{{ csrf_token() }}",
                                 id: idBtn

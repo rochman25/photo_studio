@@ -33,7 +33,11 @@ class ScheduleController extends Controller
             $products = explode(",",$item->detail->product_id);
             foreach($products as $index_p => $item_p){
                 $product = Product::find($item_p);
-                $description .= " + Photo Studio - ".$product->category->nama." - ".$product->nama;
+                if($product){
+                    $description .= " + Photo Studio - ".$product->category->nama." - ".$product->nama;
+                }else{
+                    $description .= "Produk Tidak Ditemukan.";
+                }
             }
             $data[] = [
                 'title' => $item->detail->first_name." ".$item->detail->last_name,

@@ -69,7 +69,7 @@
                             @forelse ($products as $item)
                                 <div class="col-md-4">
                                     <div class="card mb-4 shadow-sm">
-                                        <img class="card-img-top" src="{{ asset($item->thumbnail) }}" alt="Card image cap">
+                                        <img class="card-img-top" src="{{ asset($item->thumbnail) }}" alt="Card image cap" loading="lazy">
                                         <div class="card-body">
                                             <p class="card-text">
                                                 <h4 style="font-weight: bold">

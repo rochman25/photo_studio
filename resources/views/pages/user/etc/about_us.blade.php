@@ -34,10 +34,7 @@
                                     <h4>Person 1</h4>
                                     <span>Chief Executive Officer</span>
                                     <div class="social">
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                        <a href=""><i class="fa fa-facebook"></i></a>
-                                        <a href=""><i class="fa fa-google-plus"></i></a>
-                                        <a href=""><i class="fa fa-linkedin"></i></a>
+                                        <a href=""><i class="fa fa-instagram"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -48,10 +45,7 @@
                                     <h4>Person 2</h4>
                                     <span>Product Manager</span>
                                     <div class="social">
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                        <a href=""><i class="fa fa-facebook"></i></a>
-                                        <a href=""><i class="fa fa-google-plus"></i></a>
-                                        <a href=""><i class="fa fa-linkedin"></i></a>
+                                        <a href=""><i class="fa fa-instagram"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -62,10 +56,7 @@
                                     <h4>Person 3</h4>
                                     <span>CTO</span>
                                     <div class="social">
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                        <a href=""><i class="fa fa-facebook"></i></a>
-                                        <a href=""><i class="fa fa-google-plus"></i></a>
-                                        <a href=""><i class="fa fa-linkedin"></i></a>
+                                        <a href=""><i class="fa fa-instagram"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -76,10 +67,7 @@
                                     <h4>Person 4</h4>
                                     <span>Accountant</span>
                                     <div class="social">
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                        <a href=""><i class="fa fa-facebook"></i></a>
-                                        <a href=""><i class="fa fa-google-plus"></i></a>
-                                        <a href=""><i class="fa fa-linkedin"></i></a>
+                                        <a href=""><i class="fa fa-instagram"></i></a>
                                     </div>
                                 </div>
                             </div>

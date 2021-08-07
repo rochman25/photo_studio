@@ -87,7 +87,7 @@
                                                 <td>
                                                     <a href="{{ route('hero.edit',$item->id) }}" class="btn btn-sm btn-success"><i class="flaticon-edit"></i></a>
                                                     <button type="button"
-                                                        data-url="{{ route('hero.destroy', $item->id) }}"
+                                                        data-url="{{ route('hero.destroy', $item->id,['param'=>'delete']) }}"
                                                         class="btn btn-sm btn-danger btn-hapus"><i class="flaticon2-trash"></i>
                                                         </a>
                                                 </td>
@@ -132,7 +132,7 @@
                     if (result.value) {
                         $.ajax({
                             url: url,
-                            type: "DELETE",
+                            type: "POST",
                             data: {
                                 _token: "{{ csrf_token() }}",
                                 id: idBtn

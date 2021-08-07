@@ -48,7 +48,28 @@ use Illuminate\Support\Facades\Route;
     Route::get('/contact_us',[UserHomeController::class,'contact'])->name('view.user.contact_us');
 // });
 
-Route::middleware(['auth'])->group(function () {
+Route::get('/foo', function () {
+    Artisan::call('storage:link');
+});
+
+Route::get('storage/{filename}', function ($filename)
+{
+    $path = storage_path('public/' . $filename);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+});
+
+Route::middleware(['auth','cors'])->group(function () {
     Route::get('/cart',[ShopController::class,'cart'])->name('view.user.cart');
     Route::get('/cart/{id}/remove',[ShopController::class,'removeCart'])->name('get.remove_from_cart');
     Route::get('/cart/{id}/add',[ShopController::class,'addToCart'])->name('get.add_to_cart');
@@ -58,13 +79,16 @@ Route::middleware(['auth'])->group(function () {
     //resource route
     //produk
     Route::resource('admin/produk', ProdukController::class);
+    Route::post('admin/produk/{id}',[ProdukController::class,'destroy'])->name('produk.destroy');
 
     //kategori produk
     Route::resource('admin/kategori_produk', KategoriProdukController::class);
+    Route::post('admin/kategori_produk/{id}', [KategoriProdukController::class,'destroy'])->name('kategori_produk.destroy');
 
     //user
     Route::post('admin/user/{id}/reset_password',[UserController::class,'resetPassword'])->name('user.reset_password');
     Route::resource('admin/user', UserController::class);
+    Route::post('admin/user/{id}', [UserController::class,'destroy'])->name('user.destroy');
     
     //role
     Route::resource('admin/role', RoleController::class);
@@ -78,9 +102,11 @@ Route::middleware(['auth'])->group(function () {
 
     //heros
     Route::resource('admin/hero',HeroController::class);
+    Route::post('admin/hero/{id}',[HeroController::class,'destroy'])->name('hero.destroy');
 
     //portfolio
     Route::resource('/admin/portfolio', PortfolioController::class);
+    Route::post('admin/portfolio/{id}',[PortfolioController::class,'destroy'])->name('portfolio.destroy');
     
     Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 

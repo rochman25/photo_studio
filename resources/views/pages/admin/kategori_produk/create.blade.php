@@ -54,14 +54,14 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="form-group form-group-last">
+                            <!-- <div class="form-group form-group-last">
                                 <label for="exampleTextarea">Deskripsi Kategori Produk</label>
                                 <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" id="exampleTextarea"
                                     rows="3">{{ old('deskripsi') }}</textarea>
                                 @error('deskripsi')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                            </div>
+                            </div> -->
                         </div>
                         <div class="kt-portlet__foot">
                             <div class="kt-form__actions">

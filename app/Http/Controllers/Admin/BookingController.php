@@ -62,8 +62,13 @@ class BookingController extends Controller
         $booking = Booking::find($id);
         $product_ids = explode(",",$booking->detail->product_id);
         $products = [];
-        foreach($product_ids as $index => $item){
-            $products[] = Product::with(['category'])->find($item)->toArray();
+        if($product_ids){
+            foreach($product_ids as $index => $item){
+                $product = Product::with(['category'])->find($item);
+                if($product){
+                    $products[] = $product->toArray();
+                }
+            }
         }
         // dd($products);
         return view('pages.admin.booking.detail',compact('booking','products'));
