@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ScheduleController;
@@ -113,4 +114,6 @@ Route::middleware(['auth','cors'])->group(function () {
     Route::get('schedules',[ScheduleController::class,'index'])->name('schedule.index');
     Route::get('schedules/json',[ScheduleController::class,'getJsonSchedule'])->name('schedules.json');
     Route::resource('admin/setting',SettingController::class);
+
+    Route::resource('teams',TeamController::class);
 });
