@@ -22,12 +22,14 @@
                 <div id="portfolio" class="portfolio">
                     <div class="container" data-aos="fade-up">
                         <div class="row" data-aos="fade-up" data-aos-delay="200">
-
+                            @if(isset($portfolio))
                             <div class="col-lg-12 col-md-12 portfolio-item filter-app">
-                                <img src="{{ asset($portfolio->file_url) }}" class="img-fluid" alt="">
+                                @if(isset($portfolio->file_url))
+                                    <img src="{{ asset($portfolio->file_url) }}" class="img-fluid" alt="" loading="lazy">
+                                @endif
                                 <div class="portfolio-info">
-                                    <h4>{{ $portfolio->nama }}</h4>
-                                    <p>{{ $portfolio->caption }}</p>
+                                    <h4>{{ $portfolio->nama ?? "" }}</h4>
+                                    <p>{{ $portfolio->caption ?? "" }}</p>
                                     <a href="{{ asset($portfolio->file_url) }}" data-gall="portfolioGallery"
                                         class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
                                 </div>
@@ -41,6 +43,11 @@
                                     </div>
                                 </div>
                             @endforeach
+                            @else
+                            <div class="col-lg-12">
+                                Portfolio tidak dapat kami temukan.
+                            </div>
+                            @endif
                         </div>
 
                     </div>
