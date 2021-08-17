@@ -59,24 +59,15 @@
           <!--Grid column-->
   
           <!--Grid column-->
-          {{-- <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <h5 class="text-uppercase mb-0">Links</h5>
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-0">Customer Service</h5>
   
-            <ul class="list-unstyled">
+            <ul class="list-unstyled mt-1">
               <li>
-                <a href="#!" class="text-white">Link 1</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 2</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 3</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 4</a>
+                <a target="_blank" href="https://wa.me/{{ substr_replace(str_replace("-","",$personalisasi[0]['P006']['value']),"62",0,1) }}/?text=Hai%20Kak%20Aku%20butuh%20bantuan%20,...." class="text-white"><img src="{{ asset('user_assets/img/logo-whatsapp.png') }}" width="100px"></a>
               </li>
             </ul>
-          </div> --}}
+          </div>
           <!--Grid column-->
         </div>
         <!--Grid row-->
