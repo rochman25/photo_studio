@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -72,14 +73,22 @@ class AuthController extends Controller
     }
 
     public function registerNewUser(Request $request){
-        $request->validate([
-            "username" => "required|alpha_dash|unique:users,name|min:6",
-            "email" => "required|email|unique:users,email",
-            "password" => "required|confirmed|min:6"
-        ]);
-
         try{
             DB::beginTransaction();
+            $validator = Validator::make($request->all(),[
+                "username" => "required|alpha_dash|unique:users,name|min:6",
+                "email" => "required|email|unique:users,email",
+                "password" => "required|confirmed|min:6"
+            ]);
+
+            if($validator->fails()){
+                return response()->json([
+                    "status" => false,
+                    "message" => "Data tidak valid",
+                    "error" => $validator->errors()
+                ]);
+            }
+
             $roleUser = $this->roleRepository->getByName("user");
             $dataUser = [
                 "name" => $request->input('username'),

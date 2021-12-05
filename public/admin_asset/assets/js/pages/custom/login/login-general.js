@@ -150,19 +150,36 @@ var KTLoginGeneral = function() {
                 method:"POST",
                 success: function(response, status, xhr, $form) {
                 	// similate 2s delay
-                	setTimeout(function() {
-	                    btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
-	                    form.clearForm();
-	                    form.validate().resetForm();
-
-	                    // display signup form
-	                    displaySignInForm();
-	                    var signInForm = login.find('.kt-login__signin form');
-	                    signInForm.clearForm();
-	                    signInForm.validate().resetForm();
-                        showErrorMsg(signInForm, 'success', 'Terima Kasih. Silahkan masuk untuk melanjutkan.')
-	                    // showErrorMsg(signInForm, 'success', 'Thank you. To complete your registration please check your email.');
-	                }, 2000);
+                    if(response.status == "true"){
+                        setTimeout(function() {
+                            btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
+                            form.clearForm();
+                            form.validate().resetForm();
+    
+                            // display signup form
+                            displaySignInForm();
+                            var signInForm = login.find('.kt-login__signin form');
+                            signInForm.clearForm();
+                            signInForm.validate().resetForm();
+                            showErrorMsg(signInForm, 'success', 'Terima Kasih. Silahkan masuk untuk melanjutkan.')
+                            // showErrorMsg(signInForm, 'success', 'Thank you. To complete your registration please check your email.');
+                        }, 2000);
+                    }else{
+                        var msg;
+                        console.log(response.responseJSON)
+                        btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
+                        displaySignUpForm();
+	                    var signUpForm = login.find('.kt-login__signup form');
+                        msg = response.message+"<br/>"
+                        // showErrorMsg(signUpForm, 'danger', response.responseJSON.message)
+                        var errorArr = response.error
+                        for (const property in errorArr) {
+                          msg = msg + errorArr[property]+"<br/>"
+                          console.log(`${property}: ${errorArr[property]}`);
+                        }
+                        showErrorMsg(signUpForm,'danger', msg)
+                    }
+                	
                 },
                 error: function(response, status, xhr){
                     if(xhr == "Unprocessable Entity"){
