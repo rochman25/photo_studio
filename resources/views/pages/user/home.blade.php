@@ -1,8 +1,8 @@
 @extends('layouts.app_user')
 @section('user_pages')
     <!-- ======= Hero Section ======= -->
-    <section id="hero">
-        <div class="" style="height:100vh" data-aos="zoom-in" data-aos-delay="100">
+    <section id="hero" style="height: auto">
+        <div class="" data-aos="zoom-in" data-aos-delay="100">
             {{-- <h1>Welcome to Regna</h1>
             <h2>We are team of talanted designers making websites with Bootstrap</h2>
             <a href="#about" class="btn-get-started">Get Started</a>
@@ -16,12 +16,12 @@
                 <div class="carousel-inner">
                     @forelse ($heros as $index => $item)
                         <div class="carousel-item @if($index == 0) active @endif">
-                            <img class="d-block w-100" style="height: 100vh" src="{{ asset($item->file_url) }}"
+                            <img class="d-block w-100" src="{{ asset($item->file_url) }}"
                                 alt="First slide">
                         </div>
                     @empty
                         <div class="carousel-item active">
-                            <img class="d-block w-100" style="height: 100vh" src="{{ asset('img/hero_1.png') }}"
+                            <img class="d-block w-100" src="{{ asset('img/hero_1.png') }}"
                                 alt="First slide">
                         </div>
                     @endforelse
