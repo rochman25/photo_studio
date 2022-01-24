@@ -27,7 +27,7 @@ class ShopController extends Controller
     {
         $serviceKategori = new Kategori();
         $products = [];
-        if ($slug !== null) {
+        if ($slug != null) {
             $products = $this->productRepository->getLastestProdukByKategori($slug);
         } else {
             $products = $this->productRepository->getLastestProduk();
@@ -81,7 +81,7 @@ class ShopController extends Controller
     }
 
     public function removeCart($id)
-    {        
+    {
         $cart = Session::get('cart');
         unset($cart[$id]);
         Session::put('cart', $cart);
@@ -103,27 +103,44 @@ class ShopController extends Controller
             $cart = session()->get('cart');
             $total = 0;
             $products = [];
-            foreach($cart as $index => $item){
+            foreach ($cart as $index => $item) {
                 $products[] = $index;
                 $total += $item['price'];
             }
-            $bookingData = $request->only(['tanggal_booking','waktu_booking','catatan']);
+
+            $checkBooking = $this->checkBookingData($request->tanggal_booking, $request->waktu_booking);
+
+            if ($checkBooking) {
+                return redirect()->back()->withInput()->with('error',"Mohon maaf waktu booking sudah ada yang mengambil.");
+            }
+
+            $bookingData = $request->only(['tanggal_booking', 'waktu_booking', 'catatan']);
             $bookingData['status'] = 'pending';
             $bookingData['is_pay'] = FALSE;
             $bookingData['user_id'] = Auth::user()->id;
             $bookingData['total'] = $total;
             $booking = Booking::create($bookingData);
 
-            $bookingDetailData = $request->only(['first_name','last_name','address','phone','email']);
+            $bookingDetailData = $request->only(['first_name', 'last_name', 'address', 'phone', 'email']);
             $bookingDetailData['booking_id'] = $booking->id;
-            $bookingDetailData['product_id'] = implode(",",$products);
+            $bookingDetailData['product_id'] = implode(",", $products);
             BookingDetail::create($bookingDetailData);
             DB::commit();
-            return redirect()->route('booking.index')->with('success','Booking berhasil disimpan');
+            return redirect()->route('booking.index')->with('success', 'Booking berhasil disimpan');
         } catch (\Throwable $th) {
             DB::rollBack();
             dd($th);
-            return redirect()->back()->withErrors(['error' => $th->getMessage()]);
+            return redirect()->back()->withInput()->withErrors(['error' => $th->getMessage()]);
         }
+    }
+
+
+    private function checkBookingData($tgl_booking, $waktu_booking)
+    {
+        $getBookingData = Booking::where('tanggal_booking', $tgl_booking)->where('waktu_booking', $waktu_booking)->first();
+        if ($getBookingData) {
+            return true;
+        }
+        return false;
     }
 }

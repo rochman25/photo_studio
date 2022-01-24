@@ -25,6 +25,16 @@
                     </p>
                 </div>
                 <!-- End -->
+                <div class="container">
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <div class="alert-text">{{ $message }}</div>
+                            <div class="alert-close">
+                                <i class="flaticon2-cross kt-icon-sm" data-dismiss="alert"></i>
+                            </div>
+                        </div>
+                    @endif
+                </div>
                 <form action="{{ route('post.checkout') }}" method="POST">
                     @csrf
                     <div class="pb-5">
@@ -43,8 +53,8 @@
                                             value="{{ old('waktu_booking') }}" required>
                                     </div>
                                     <div class="p-2" style="padding-bottom: 1px">
-                                        <input type="text" name="first_name" class="form-control" placeholder="Nama Depan *"
-                                            value="{{ old('last_name') }}" required>
+                                        <input type="text" name="first_name" class="form-control"
+                                            placeholder="Nama Depan *" value="{{ old('last_name') }}" required>
                                     </div>
                                     <div class="p-2">
                                         <input type="text" name="last_name" class="form-control"
